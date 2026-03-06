@@ -1,0 +1,33 @@
+/* variables.css */
+:root {
+  /* Colors (MD3-inspired, neutral) */
+  --md-primary: #6750a4;
+  --md-on-primary: #ffffff;
+  --md-surface: #ffffff;
+  --md-background: #fef7ff;
+  --md-outline: #e0e0e0;
+  --md-text-primary: #1c1b1f;
+  --md-text-secondary: #49454f;
+
+  /* Spacing scale (8pt grid) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
+
+  /* Typography */
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Border radius (MD3 uses softer curves) */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+
+  /* Elevation (subtle) */
+  --elevation-1: 0 1px 3px rgba(0, 0, 0, 0.12);
+  --elevation-2: 0 4px 8px rgba(0, 0, 0, 0.12);
+
+  /* Touch targets */
+  --min-touch: 48px;
+}

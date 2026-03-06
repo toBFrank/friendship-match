@@ -1,0 +1,86 @@
+/* globals.css */
+@import "./variables.css";
+
+/* Reset-ish */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* App baseline */
+body {
+  font-family: var(--font-body);
+  background: var(--md-background);
+  color: var(--md-text-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+/* Mobile-first */
+.container {
+  min-height: 100vh;
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.section {
+  margin: var(--space-5);
+  border-style: solid;
+}
+
+/* Mobile-first typography */
+h1 {
+  font-size: 1.5rem;
+  margin-bottom: var(--space-3);
+}
+
+h2 {
+  font-size: 1.25rem;
+  margin-bottom: var(--space-2);
+}
+
+p {
+  margin-bottom: var(--space-2);
+  color: var(--md-text-secondary);
+}
+
+/* Forms */
+button,
+input,
+select {
+  font: inherit;
+}
+
+/* Buttons (basic MD3 feel) */
+button {
+  min-height: var(--min-touch);
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-lg);
+  border: none;
+  background: var(--md-primary);
+  color: var(--md-on-primary);
+  box-shadow: var(--elevation-1);
+}
+
+/* Inputs */
+input {
+  width: 100%;
+  min-height: var(--min-touch);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--md-outline);
+}
+
+/* Safe tap areas */
+a {
+  color: inherit;
+  text-decoration: none;
+}
