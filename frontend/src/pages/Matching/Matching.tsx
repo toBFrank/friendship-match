@@ -7,7 +7,7 @@ function Matching() {
         <h1>Matching Page</h1>
         <ul>
             <li>Pick match type (quick (default), study buddy, detailed)</li>
-            <li>Other things to find on this page...</li>
+            <li>Quiz section</li>
         </ul>
       </section>
     </main>
