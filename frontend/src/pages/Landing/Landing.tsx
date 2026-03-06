@@ -23,7 +23,7 @@ function Landing() {
       <section className={styles.section}>
         <h2>Features</h2>
         <ul>
-          <li>Multiple match types (quick, study buddy, detailed)</li>
+          <li>Multiple match types (quick, classes, detailed)</li>
           <li>Personalized matching based on test results</li>
           <li>Easy-to-use interface</li>
         </ul>

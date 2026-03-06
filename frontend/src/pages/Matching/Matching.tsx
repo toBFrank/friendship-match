@@ -1,4 +1,5 @@
 import styles from "./Matching.module.css";
+import TestPathButton from "./TestPathButton";
 
 function Matching() {
   return (
@@ -6,14 +7,16 @@ function Matching() {
       <section className={styles.section}>
         <h1>Matching Page</h1>
         <ul>
-            <li>Pick match type (quick (default), study buddy, detailed)</li>
-            <li>Test section</li>
+          <li>Pick match type (quick (default), classes, detailed)</li>
+          <li>Test section</li>
         </ul>
       </section>
       <section className={styles.section}>
-        <button>Quick Match</button>
-        <button>Study Buddy</button>
-        <button>Detailed Match</button>
+        <section className={styles.testpath}>
+          <TestPathButton label={"Quick Match"} />
+          <TestPathButton label={"Classes Match"} />
+          <TestPathButton label={"Detailed Match"} />
+        </section>
       </section>
       <section className={styles.section}>
         <h2>Test Section</h2>

@@ -6,8 +6,7 @@ function Authentication() {
       <section className={styles.section}>
         <h1>Authentication Page</h1>
         <ul>
-            <li>Pick match type (quick (default), study buddy, detailed)</li>
-            <li>Other things to find on this page...</li>
+            <li>Things to find on this page...</li>
         </ul>
       </section>
     </main>
