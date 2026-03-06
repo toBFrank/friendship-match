@@ -16,7 +16,7 @@ function Landing() {
         <h2>How It Works</h2>
         <ol>
           <li>Pick a path</li>
-          <li>Complete the quiz</li>
+          <li>Complete the test</li>
           <li>Get matched!</li>
         </ol>
       </section>
@@ -24,7 +24,7 @@ function Landing() {
         <h2>Features</h2>
         <ul>
           <li>Multiple match types (quick, study buddy, detailed)</li>
-          <li>Personalized matching based on quiz results</li>
+          <li>Personalized matching based on test results</li>
           <li>Easy-to-use interface</li>
         </ul>
       </section>

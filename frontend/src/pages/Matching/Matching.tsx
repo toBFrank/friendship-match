@@ -7,8 +7,16 @@ function Matching() {
         <h1>Matching Page</h1>
         <ul>
             <li>Pick match type (quick (default), study buddy, detailed)</li>
-            <li>Quiz section</li>
+            <li>Test section</li>
         </ul>
+      </section>
+      <section className={styles.section}>
+        <button>Quick Match</button>
+        <button>Study Buddy</button>
+        <button>Detailed Match</button>
+      </section>
+      <section className={styles.section}>
+        <h2>Test Section</h2>
       </section>
     </main>
   );

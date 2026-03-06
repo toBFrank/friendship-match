@@ -8,9 +8,9 @@ Meeting people in university is harder than it should be. My Flock is a study-bu
 
 1. User lands on the app
 2. Chooses one of three paths:
-   - **Short Quiz** (primary path)
-   - **Study Buddy Quiz** (class-based matching)
-   - **Detailed Quiz** (optional, deeper matching)
+   - **Short Test** (primary path)
+   - **Study Buddy Test** (class-based matching)
+   - **Detailed Test** (optional, deeper matching)
 3. Users are notified via email when matches are ready
 4. Matches are viewable in-app
 4. Users can message matches in-app
