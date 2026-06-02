@@ -1,6 +1,24 @@
 @theme {
   /* Typography */
   --font-sans: "Geist Mono", system-ui, -apple-system, sans-serif;
+
+  /* Colors */
+  /* TODO: Create a color palette */
+  /* Theme
+   * - Primary 60%: Large backgrounds, main headers, primary navigation bars, and key branding assets
+   * - Secondary 30%: Secondary buttons, subheadings, supporting text, charts, testimonials, and active/inactive icons
+   * - Accent 10%: Primary Calls-to-Action (CTAs), Floating Action Buttons (FABs), highlighted links, notifications, and important badges
+  */
+  --color-primary: white;
+  --color-secondary: grey;
+  --color-accent: black;
+  /* Surface */
+  --color-bg-main: white;
+  --color-bg-surface: black;
+  /* Text */
+  --color-text-main: black;
+  --color-text-muted: grey;
+
 }
 
 body {
