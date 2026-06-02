@@ -1,21 +1,14 @@
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-.root {
-    isolation: isolate;
+@theme {
+  /* Typography */
+  --font-sans: "Geist Mono", system-ui, -apple-system, sans-serif;
 }
 
 body {
-  font-family: system-ui, -apple-system, sans-serif;
-  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   position: relative;
+  overflow-x: hidden;
 }
 
-img, video {
-  max-width: 100%;
-  display: block;
+.root {
+  isolation: isolate;
 }
