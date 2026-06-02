@@ -3,8 +3,6 @@ import { Header, Footer } from "../components/layout";
 export default function BasePage() {
   return (
     <>
-      <a href="#main-content">Skip to main content</a>
-
       <Header />
 
       <main id="main-content">
