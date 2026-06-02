@@ -1,6 +1,4 @@
 export default function Header() {
-  // TODO: Finalize design and styling of the header
-  // TODO: Finalize app name and branding to include in the header
   const APP_NAME = "Flocker";
   const NAV_LINKS = [{ name: "Questionnaire", href: "/questionnaire" }];
   return (
