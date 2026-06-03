@@ -1,7 +1,13 @@
 @theme {
   /* Typography */
+  /* Font */
   --font-sans: "Geist Mono", system-ui, -apple-system, sans-serif;
-
+  /* Size 
+   * H0 text-4xl font-extrabold
+   * H1 text-3xl font-bold
+   * H2 text-2xl font-semibold
+   * H3 text-xl font-medium
+  */
   /* Colors */
   /* TODO: Create a color palette */
   /* Theme
@@ -18,7 +24,6 @@
   /* Text */
   --color-text-main: black;
   --color-text-muted: grey;
-
 }
 
 body {
