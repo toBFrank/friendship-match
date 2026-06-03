@@ -1,11 +1,14 @@
 import { Route, Routes } from "react-router";
 import { QuestionnairePage } from "./pages";
+import { MainLayout } from "./components/layout";
 
 function App() {
   return (
-    <div className="root">
+    <div className="root min-h-screen flex flex-col">
       <Routes>
-        <Route path="/" element={<QuestionnairePage />} />
+        <Route element={<MainLayout />}>
+          <Route path="/questionnaire" element={<QuestionnairePage />} />
+        </Route>
       </Routes>
     </div>
   );
