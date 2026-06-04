@@ -1,1 +1,1 @@
-export { default as QuestionnairePage } from "./QuestionnairePage";
+export { default as QuestionnairePage } from "./QuestionnairePage/QuestionnairePage";

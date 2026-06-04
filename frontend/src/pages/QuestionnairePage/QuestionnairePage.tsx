@@ -1,10 +1,13 @@
 import { Progress } from "@base-ui/react/progress";
 import { useEffect, useState } from "react";
+import InterestsSection from "./InterestsSection";
 
 export default function QuestionnairePage() {
-  const [progressValue, setProgressValue] = useState(0);
+  const [progressValue, setProgressValue] = useState<number>(0);
+  const [interests, setInterests] = useState<number[]>([]);
 
   // change progress value every 2 seconds for demo purposes
+  // TODO: remove this and update progress value based on number of sections completed in the questionnaire form
   useEffect(() => {
     const interval = setInterval(() => {
       setProgressValue((prev) => (prev >= 100 ? 0 : prev + 20));
@@ -33,8 +36,10 @@ export default function QuestionnairePage() {
         </Progress.Root>
       </section>
 
-      <section aria-labelledby="section-questionnaire">
-        <form></form>
+      <section aria-labelledby="section-questionnaire" className="mt-8">
+        <form>
+          <InterestsSection selected={interests} onChange={setInterests} />
+        </form>
       </section>
     </main>
   );
