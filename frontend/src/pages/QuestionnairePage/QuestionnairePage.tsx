@@ -2,20 +2,47 @@ import { Progress } from "@base-ui/react/progress";
 import { useEffect, useState } from "react";
 import InterestsSection from "./InterestsSection";
 
+const SECTIONS = [
+  "interests",
+  "personality",
+  "academic",
+  "availability",
+] as const;
+type Section = (typeof SECTIONS)[number];
+
+const SECTION_LABELS: Record<Section, string> = {
+  interests: "Interests",
+  personality: "Personality",
+  academic: "Academic",
+  availability: "Availability",
+};
+
+function NextSection() {
+  return <div>NextSection</div>;
+}
+
 export default function QuestionnairePage() {
-  const [progressValue, setProgressValue] = useState<number>(0);
+  const [currentSection, setCurrentSection] = useState<number>(0);
+
   const [interests, setInterests] = useState<number[]>([]);
 
-  // change progress value every 2 seconds for demo purposes
-  // TODO: remove this and update progress value based on number of sections completed in the questionnaire form
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setProgressValue((prev) => (prev >= 100 ? 0 : prev + 20));
-    }, 2000);
+  const progressValue = Math.round((currentSection / SECTIONS.length) * 100);
+  const isLast = currentSection === SECTIONS.length - 1;
 
-    return () => clearInterval(interval);
-  }, []);
+  function handleNext() {
+    if (!isLast) setCurrentSection((prev) => prev + 1);
+  }
 
+  function renderSection() {
+    switch (SECTIONS[currentSection]) {
+      case "interests":
+        return (
+          <InterestsSection selected={interests} onChange={setInterests} />
+        );
+      default:
+        return <NextSection />;
+    }
+  }
   // progress value will change based on number of sections completed in the questionnaire form
 
   return (
@@ -38,7 +65,16 @@ export default function QuestionnairePage() {
 
       <section aria-labelledby="section-questionnaire" className="mt-8">
         <form>
-          <InterestsSection selected={interests} onChange={setInterests} />
+          {renderSection()}
+
+          <div className="mt-8 flex justify-end">
+            {!isLast && (
+              <button type="button" onClick={handleNext}>
+                Next: {SECTION_LABELS[SECTIONS[currentSection + 1]]} →
+              </button>
+            )}
+            {isLast && <button type="submit">Submit</button>}
+          </div>
         </form>
       </section>
     </main>
