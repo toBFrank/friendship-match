@@ -50,7 +50,7 @@ export default function InterestsSection({
   return (
     <section aria-labelledby="interests-heading">
       <h2 id="interests-heading" className="text-2xl font-semibold">
-        Interests
+        What are your interests?
       </h2>
       <p>Select everything that applies to you.</p>
 
