@@ -7,6 +7,7 @@
    * H1 text-3xl font-bold
    * H2 text-2xl font-semibold
    * H3 text-xl font-medium
+   * H4 text-lg font-medium
   */
   /* Colors */
   /* TODO: Create a color palette */
@@ -31,6 +32,8 @@ body {
   position: relative;
   overflow-x: hidden;
 }
+
+h
 
 .root {
   isolation: isolate;

@@ -1,10 +1,12 @@
 import { Progress } from "@base-ui/react/progress";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import InterestsSection from "./InterestsSection";
+import PersonalitySection from "./PersonalitySection";
+import type { PersonalityAnswer } from "../../types/personality";
 
 const SECTIONS = [
-  "interests",
   "personality",
+  "interests",
   "academic",
   "availability",
 ] as const;
@@ -25,6 +27,9 @@ export default function QuestionnairePage() {
   const [currentSection, setCurrentSection] = useState<number>(0);
 
   const [interests, setInterests] = useState<number[]>([]);
+  const [personalityAnswers, setPersonalityAnswers] = useState<
+    PersonalityAnswer[]
+  >([]);
 
   const progressValue = Math.round((currentSection / SECTIONS.length) * 100);
   const isLast = currentSection === SECTIONS.length - 1;
@@ -39,11 +44,17 @@ export default function QuestionnairePage() {
         return (
           <InterestsSection selected={interests} onChange={setInterests} />
         );
+      case "personality":
+        return (
+          <PersonalitySection
+            answers={personalityAnswers}
+            onChange={setPersonalityAnswers}
+          />
+        );
       default:
         return <NextSection />;
     }
   }
-  // progress value will change based on number of sections completed in the questionnaire form
 
   return (
     <main id="main-content" className="flex-1 px-6 py-4">
