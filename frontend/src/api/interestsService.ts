@@ -1,6 +1,6 @@
 import sample_interests from "../data/sample_interests";
 import type { Interest } from "../types/interest";
-import { apiRequest } from "./ApiService";
+import { apiRequest } from "./apiService";
 
 const USE_SAMPLE_DATA = true;
 
