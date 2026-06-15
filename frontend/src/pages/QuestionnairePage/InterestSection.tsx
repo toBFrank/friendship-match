@@ -56,7 +56,7 @@ export default function InterestSection({
 
       <div className="mt-4">
         {CATEGORIES.map((category) => (
-          <div key={category} className="mt-2">
+          <div key={category} className="mt-8">
             <h3 className="text-xl font-medium">{category}</h3>
             <div role="group" aria-label={`${category} interests`}>
               {byCategory(category).map((interest) => {
