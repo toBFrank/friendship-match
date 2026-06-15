@@ -3,11 +3,13 @@ import { useState } from "react";
 import InterestSection from "./InterestSection";
 import PersonalitySection from "./PersonalitySection";
 import type { PersonalityAnswer } from "../../types/personality";
+import AcademicSection from "./AcademicSection";
+import type { AcademicFormData } from "../../types/academic";
 
 const SECTIONS = [
+  "academic",
   "interests",
   "personality",
-  "academic",
   "availability",
 ] as const;
 type Section = (typeof SECTIONS)[number];
@@ -30,6 +32,12 @@ export default function QuestionnairePage() {
   const [personalityAnswers, setPersonalityAnswers] = useState<
     PersonalityAnswer[]
   >([]);
+  const [academicData, setAcademicData] = useState<AcademicFormData>({
+    degreeLevel: null,
+    programId: null,
+    year: null,
+    courseIds: [],
+  });
 
   const progressValue = Math.round((currentSection / SECTIONS.length) * 100);
   const isFirst = currentSection === 0;
@@ -52,6 +60,10 @@ export default function QuestionnairePage() {
             answers={personalityAnswers}
             onChange={setPersonalityAnswers}
           />
+        );
+      case "academic":
+        return (
+          <AcademicSection data={academicData} onChange={setAcademicData} />
         );
       default:
         return <NextSection />;
