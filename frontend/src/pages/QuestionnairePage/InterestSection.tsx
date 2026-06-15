@@ -6,15 +6,15 @@ import { Button } from "@base-ui/react/button";
 type Category = Interest["category"];
 const CATEGORIES: Category[] = ["Physical", "Mental", "Creative", "Social"];
 
-interface InterestsSectionProps {
+interface InterestSectionProps {
   selected: number[];
   onChange: (selected: number[]) => void;
 }
 
-export default function InterestsSection({
+export default function InterestSection({
   selected,
   onChange,
-}: InterestsSectionProps) {
+}: InterestSectionProps) {
   const [interests, setInterests] = useState<Interest[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);

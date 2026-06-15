@@ -1,6 +1,6 @@
 import { Progress } from "@base-ui/react/progress";
 import { useState } from "react";
-import InterestsSection from "./InterestsSection";
+import InterestSection from "./InterestSection";
 import PersonalitySection from "./PersonalitySection";
 import type { PersonalityAnswer } from "../../types/personality";
 
@@ -45,9 +45,7 @@ export default function QuestionnairePage() {
   function renderSection() {
     switch (SECTIONS[currentSection]) {
       case "interests":
-        return (
-          <InterestsSection selected={interests} onChange={setInterests} />
-        );
+        return <InterestSection selected={interests} onChange={setInterests} />;
       case "personality":
         return (
           <PersonalitySection
@@ -89,7 +87,7 @@ export default function QuestionnairePage() {
               disabled={isFirst}
               className="disabled:opacity-0"
             >
-              ← {!isFirst && SECTION_LABELS[SECTIONS[currentSection - 1]]}
+              ← Prev: {!isFirst && SECTION_LABELS[SECTIONS[currentSection - 1]]}
             </button>
 
             {!isLast ? (
