@@ -93,16 +93,16 @@ export default function PersonalitySection({
 
       <div className="mt-4">
         {CATEGORIES.map((category) => (
-          <div key={category} className="mt-6 p-4 border-2">
+          <div key={category} className="mt-8 p-4 border-2">
             <h3 className="text-xl font-medium">{CATEGORY_LABELS[category]}</h3>
-            <div className="mt-2">
+            <div className="mt-8">
               {byCategory(category).map((question) => {
                 const currentValue = answers.find(
                   (a) => a.questionId === question.id,
                 )?.likertValue;
 
                 return (
-                  <fieldset key={question.id} className="mt-4 border-none p-0">
+                  <fieldset key={question.id} className="mt-8 border-none p-0">
                     <legend className="text-lg italic mb-2">
                       {question.text}
                     </legend>
