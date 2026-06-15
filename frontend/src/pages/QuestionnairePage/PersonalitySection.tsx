@@ -112,12 +112,12 @@ export default function PersonalitySection({
                       onValueChange={(value) =>
                         handleSelect(question.id, value)
                       }
-                      className="flex flex-row justify-evenly items-center"
+                      className="flex flex-row justify-evenly"
                     >
                       {LIKERT_OPTIONS.map((option) => (
                         <label
                           key={option.value}
-                          className="flex flex-col-reverse items-center gap-2 text-sm cursor-pointer select-none"
+                          className="flex flex-col-reverse items-center gap-2 text-sm cursor-pointer select-none flex-1 text-center"
                         >
                           <Radio.Root
                             value={option.value}

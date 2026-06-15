@@ -5,8 +5,8 @@ import PersonalitySection from "./PersonalitySection";
 import type { PersonalityAnswer } from "../../types/personality";
 
 const SECTIONS = [
-  "personality",
   "interests",
+  "personality",
   "academic",
   "availability",
 ] as const;
@@ -32,8 +32,12 @@ export default function QuestionnairePage() {
   >([]);
 
   const progressValue = Math.round((currentSection / SECTIONS.length) * 100);
+  const isFirst = currentSection === 0;
   const isLast = currentSection === SECTIONS.length - 1;
 
+  function handlePrev() {
+    if (!isFirst) setCurrentSection((prev) => prev - 1);
+  }
   function handleNext() {
     if (!isLast) setCurrentSection((prev) => prev + 1);
   }
@@ -78,13 +82,23 @@ export default function QuestionnairePage() {
         <form>
           {renderSection()}
 
-          <div className="mt-8 flex justify-end">
-            {!isLast && (
+          <div className="mt-8 flex justify-between">
+            <button
+              type="button"
+              onClick={handlePrev}
+              disabled={isFirst}
+              className="disabled:opacity-0"
+            >
+              ← {!isFirst && SECTION_LABELS[SECTIONS[currentSection - 1]]}
+            </button>
+
+            {!isLast ? (
               <button type="button" onClick={handleNext}>
                 Next: {SECTION_LABELS[SECTIONS[currentSection + 1]]} →
               </button>
+            ) : (
+              <button type="submit">Submit</button>
             )}
-            {isLast && <button type="submit">Submit</button>}
           </div>
         </form>
       </section>
