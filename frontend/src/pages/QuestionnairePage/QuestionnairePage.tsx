@@ -7,9 +7,9 @@ import AcademicSection from "./AcademicSection";
 import type { AcademicFormData } from "../../types/academic";
 
 const SECTIONS = [
-  "academic",
   "interests",
   "personality",
+  "academic",
   "availability",
 ] as const;
 type Section = (typeof SECTIONS)[number];
