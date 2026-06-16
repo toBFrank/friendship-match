@@ -120,6 +120,125 @@ export const sample_programs: Program[] = [
     degreeLevel: "Graduate",
   },
   { id: 25, name: "MA Psychology", faculty: "Arts", degreeLevel: "Graduate" },
+  // Undergraduate — Science
+  {
+    id: 1,
+    name: "Computer Science",
+    faculty: "Science",
+    degreeLevel: "Undergraduate",
+  },
+  { id: 2, name: "Biology", faculty: "Science", degreeLevel: "Undergraduate" },
+  {
+    id: 3,
+    name: "Chemistry",
+    faculty: "Science",
+    degreeLevel: "Undergraduate",
+  },
+  {
+    id: 4,
+    name: "Mathematics",
+    faculty: "Science",
+    degreeLevel: "Undergraduate",
+  },
+  { id: 5, name: "Physics", faculty: "Science", degreeLevel: "Undergraduate" },
+  {
+    id: 6,
+    name: "Statistics",
+    faculty: "Science",
+    degreeLevel: "Undergraduate",
+  },
+
+  // Undergraduate — Engineering
+  {
+    id: 7,
+    name: "Civil Engineering",
+    faculty: "Engineering",
+    degreeLevel: "Undergraduate",
+  },
+  {
+    id: 8,
+    name: "Electrical Engineering",
+    faculty: "Engineering",
+    degreeLevel: "Undergraduate",
+  },
+  {
+    id: 9,
+    name: "Mechanical Engineering",
+    faculty: "Engineering",
+    degreeLevel: "Undergraduate",
+  },
+  {
+    id: 10,
+    name: "Software Engineering",
+    faculty: "Engineering",
+    degreeLevel: "Undergraduate",
+  },
+
+  // Undergraduate — Business
+  {
+    id: 11,
+    name: "Accounting",
+    faculty: "Business",
+    degreeLevel: "Undergraduate",
+  },
+  {
+    id: 12,
+    name: "Finance",
+    faculty: "Business",
+    degreeLevel: "Undergraduate",
+  },
+  {
+    id: 13,
+    name: "Marketing",
+    faculty: "Business",
+    degreeLevel: "Undergraduate",
+  },
+  {
+    id: 14,
+    name: "Management",
+    faculty: "Business",
+    degreeLevel: "Undergraduate",
+  },
+
+  // Undergraduate — Arts
+  {
+    id: 15,
+    name: "English Literature",
+    faculty: "Arts",
+    degreeLevel: "Undergraduate",
+  },
+  { id: 16, name: "History", faculty: "Arts", degreeLevel: "Undergraduate" },
+  { id: 17, name: "Philosophy", faculty: "Arts", degreeLevel: "Undergraduate" },
+  { id: 18, name: "Psychology", faculty: "Arts", degreeLevel: "Undergraduate" },
+  { id: 19, name: "Sociology", faculty: "Arts", degreeLevel: "Undergraduate" },
+
+  // Graduate
+  {
+    id: 20,
+    name: "MSc Computer Science",
+    faculty: "Science",
+    degreeLevel: "Graduate",
+  },
+  {
+    id: 21,
+    name: "MSc Data Science",
+    faculty: "Science",
+    degreeLevel: "Graduate",
+  },
+  { id: 22, name: "MBA", faculty: "Business", degreeLevel: "Graduate" },
+  {
+    id: 23,
+    name: "MEng Software Engineering",
+    faculty: "Engineering",
+    degreeLevel: "Graduate",
+  },
+  {
+    id: 24,
+    name: "PhD Computer Science",
+    faculty: "Science",
+    degreeLevel: "Graduate",
+  },
+  { id: 25, name: "MA Psychology", faculty: "Arts", degreeLevel: "Graduate" },
 ];
 
 export const sample_courses: Course[] = [

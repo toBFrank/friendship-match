@@ -20,7 +20,7 @@ const selectClass = [
 ].join(" ");
 
 const popupClass =
-  "border border-black bg-white py-1 z-50 max-h-64 overflow-y-auto";
+  "border border-black bg-white z-50 max-h-[min(16rem,52vh)] overflow-y-auto no-scrollbar";
 
 const itemClass = [
   "flex items-center px-3 py-1.5 text-sm cursor-pointer select-none",
@@ -156,13 +156,13 @@ function CourseSearch({
           }}
           onFocus={() => query.trim().length > 0 && setOpen(true)}
           placeholder="Search by course code or name..."
-          className="w-full border border-black px-3 py-2 text-sm focus-visible:outline-2 focus-visible:-outline-offset-1 focus-visible:outline-black"
+          className="w-full border border-black px-3 py-2 text-sm focus-visible:outline-black focus-visible:outline-0"
         />
 
         {open && suggestions.length > 0 && (
           <ul
             ref={listRef}
-            className="absolute left-0 right-0 top-full border border-t-0 border-black bg-white z-50 max-h-52 overflow-y-auto"
+            className="absolute left-0 right-0 top-full border border-t border-black bg-white z-50 max-h-52 overflow-y-auto no-scrollbar"
           >
             {suggestions.map((course) => (
               <li key={course.id}>
@@ -186,6 +186,20 @@ function CourseSearch({
           </div>
         )}
       </div>
+
+      {!suggesting && !submitted && (
+        <button
+          type="button"
+          onClick={() => setSuggesting(true)}
+          className="mt-3 text-sm underline hover:font-medium"
+        >
+          Can't find your course? Suggest it.
+        </button>
+      )}
+
+      <p aria-live="polite" className="mt-2 text-sm">
+        {selectedIds.length} selected
+      </p>
 
       {/* Selected courses */}
       {selectedCourses.length > 0 && (
@@ -213,20 +227,7 @@ function CourseSearch({
         </ul>
       )}
 
-      <p aria-live="polite" className="mt-2 text-sm">
-        {selectedIds.length} selected
-      </p>
-
       {/* Suggest missing course */}
-      {!suggesting && !submitted && (
-        <button
-          type="button"
-          onClick={() => setSuggesting(true)}
-          className="mt-3 text-sm underline hover:font-medium"
-        >
-          Can't find your course? Suggest it.
-        </button>
-      )}
       {suggesting && (
         <SuggestForm
           type="course"
@@ -343,7 +344,10 @@ export default function AcademicSection({
               </Select.Value>
             </Select.Trigger>
             <Select.Portal>
-              <Select.Positioner>
+              <Select.Positioner
+                className="w-(--anchor-width)"
+                alignItemWithTrigger={false}
+              >
                 <Select.Popup className={popupClass}>
                   {DEGREE_LEVELS.map((level) => (
                     <Select.Item
@@ -374,7 +378,10 @@ export default function AcademicSection({
                 </Select.Value>
               </Select.Trigger>
               <Select.Portal>
-                <Select.Positioner>
+                <Select.Positioner
+                  className="w-(--anchor-width)"
+                  alignItemWithTrigger={false}
+                >
                   <Select.Popup className={popupClass}>
                     {availablePrograms.map((program) => (
                       <Select.Item
@@ -428,7 +435,10 @@ export default function AcademicSection({
                 </Select.Value>
               </Select.Trigger>
               <Select.Portal>
-                <Select.Positioner>
+                <Select.Positioner
+                  className="w-(--anchor-width)"
+                  alignItemWithTrigger={false}
+                >
                   <Select.Popup className={popupClass}>
                     {yearOptions.map((year) => (
                       <Select.Item
@@ -448,7 +458,7 @@ export default function AcademicSection({
 
         {/* Current Courses */}
         {data.programId && (
-          <fieldset className="border-none p-0">
+          <fieldset className="border-none p-0 mb-4">
             <legend className="text-sm mb-2">Current courses</legend>
             <CourseSearch
               allCourses={allCourses}
