@@ -1,125 +1,6 @@
-import type { Program, Course } from "../types/academic";
+import type { Program, Course, University } from "../types/academic";
 
 export const sample_programs: Program[] = [
-  // Undergraduate — Science
-  {
-    id: 1,
-    name: "Computer Science",
-    faculty: "Science",
-    degreeLevel: "Undergraduate",
-  },
-  { id: 2, name: "Biology", faculty: "Science", degreeLevel: "Undergraduate" },
-  {
-    id: 3,
-    name: "Chemistry",
-    faculty: "Science",
-    degreeLevel: "Undergraduate",
-  },
-  {
-    id: 4,
-    name: "Mathematics",
-    faculty: "Science",
-    degreeLevel: "Undergraduate",
-  },
-  { id: 5, name: "Physics", faculty: "Science", degreeLevel: "Undergraduate" },
-  {
-    id: 6,
-    name: "Statistics",
-    faculty: "Science",
-    degreeLevel: "Undergraduate",
-  },
-
-  // Undergraduate — Engineering
-  {
-    id: 7,
-    name: "Civil Engineering",
-    faculty: "Engineering",
-    degreeLevel: "Undergraduate",
-  },
-  {
-    id: 8,
-    name: "Electrical Engineering",
-    faculty: "Engineering",
-    degreeLevel: "Undergraduate",
-  },
-  {
-    id: 9,
-    name: "Mechanical Engineering",
-    faculty: "Engineering",
-    degreeLevel: "Undergraduate",
-  },
-  {
-    id: 10,
-    name: "Software Engineering",
-    faculty: "Engineering",
-    degreeLevel: "Undergraduate",
-  },
-
-  // Undergraduate — Business
-  {
-    id: 11,
-    name: "Accounting",
-    faculty: "Business",
-    degreeLevel: "Undergraduate",
-  },
-  {
-    id: 12,
-    name: "Finance",
-    faculty: "Business",
-    degreeLevel: "Undergraduate",
-  },
-  {
-    id: 13,
-    name: "Marketing",
-    faculty: "Business",
-    degreeLevel: "Undergraduate",
-  },
-  {
-    id: 14,
-    name: "Management",
-    faculty: "Business",
-    degreeLevel: "Undergraduate",
-  },
-
-  // Undergraduate — Arts
-  {
-    id: 15,
-    name: "English Literature",
-    faculty: "Arts",
-    degreeLevel: "Undergraduate",
-  },
-  { id: 16, name: "History", faculty: "Arts", degreeLevel: "Undergraduate" },
-  { id: 17, name: "Philosophy", faculty: "Arts", degreeLevel: "Undergraduate" },
-  { id: 18, name: "Psychology", faculty: "Arts", degreeLevel: "Undergraduate" },
-  { id: 19, name: "Sociology", faculty: "Arts", degreeLevel: "Undergraduate" },
-
-  // Graduate
-  {
-    id: 20,
-    name: "MSc Computer Science",
-    faculty: "Science",
-    degreeLevel: "Graduate",
-  },
-  {
-    id: 21,
-    name: "MSc Data Science",
-    faculty: "Science",
-    degreeLevel: "Graduate",
-  },
-  { id: 22, name: "MBA", faculty: "Business", degreeLevel: "Graduate" },
-  {
-    id: 23,
-    name: "MEng Software Engineering",
-    faculty: "Engineering",
-    degreeLevel: "Graduate",
-  },
-  {
-    id: 24,
-    name: "PhD Computer Science",
-    faculty: "Science",
-    degreeLevel: "Graduate",
-  },
-  { id: 25, name: "MA Psychology", faculty: "Arts", degreeLevel: "Graduate" },
   // Undergraduate — Science
   {
     id: 1,
@@ -341,4 +222,22 @@ export const sample_courses: Course[] = [
   { id: 24, code: "MBA 501", name: "Foundations of Management", programId: 22 },
   { id: 25, code: "MBA 521", name: "Financial Accounting", programId: 22 },
   { id: 26, code: "MBA 541", name: "Marketing Management", programId: 22 },
+];
+
+export const sample_universities: University[] = [
+  { id: 1, name: "University of Alberta", country: "Canada" },
+  { id: 2, name: "University of Toronto", country: "Canada" },
+  { id: 3, name: "University of British Columbia", country: "Canada" },
+  { id: 4, name: "McGill University", country: "Canada" },
+  { id: 5, name: "University of Waterloo", country: "Canada" },
+  { id: 6, name: "Queen's University", country: "Canada" },
+  { id: 7, name: "University of Calgary", country: "Canada" },
+  { id: 8, name: "Western University", country: "Canada" },
+  { id: 9, name: "Massachusetts Institute of Technology", country: "USA" },
+  { id: 10, name: "Stanford University", country: "USA" },
+  { id: 11, name: "Harvard University", country: "USA" },
+  { id: 12, name: "University of California, Berkeley", country: "USA" },
+  { id: 13, name: "University of Oxford", country: "UK" },
+  { id: 14, name: "University of Cambridge", country: "UK" },
+  { id: 15, name: "Imperial College London", country: "UK" },
 ];

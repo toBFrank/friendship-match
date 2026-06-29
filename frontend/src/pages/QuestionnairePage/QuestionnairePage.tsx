@@ -1,29 +1,23 @@
 import { Progress } from "@base-ui/react/progress";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import InterestSection from "./InterestSection";
 import PersonalitySection from "./PersonalitySection";
 import type { PersonalityAnswer } from "../../types/personality";
 import AcademicSection from "./AcademicSection";
 import type { AcademicFormData } from "../../types/academic";
+import AccountSection, { validateAccount } from "./AccountSection";
+import type { AccountFormData } from "../../types/account";
+import { INITIAL_ACCOUNT_DATA } from "../../types/account";
 
-const SECTIONS = [
-  "interests",
-  "personality",
-  "academic",
-  "availability",
-] as const;
+const SECTIONS = ["interests", "personality", "academic", "account"] as const;
 type Section = (typeof SECTIONS)[number];
 
 const SECTION_LABELS: Record<Section, string> = {
   interests: "Interests",
   personality: "Personality",
   academic: "Academic",
-  availability: "Availability",
+  account: "Account",
 };
-
-function NextSection() {
-  return <div>NextSection</div>;
-}
 
 export default function QuestionnairePage() {
   const [currentSection, setCurrentSection] = useState<number>(0);
@@ -33,21 +27,40 @@ export default function QuestionnairePage() {
     PersonalityAnswer[]
   >([]);
   const [academicData, setAcademicData] = useState<AcademicFormData>({
+    universityId: null,
     degreeLevel: null,
     programId: null,
     year: null,
     courseIds: [],
   });
+  const [accountData, setAccountData] =
+    useState<AccountFormData>(INITIAL_ACCOUNT_DATA);
+  const [accountErrors, setAccountErrors] = useState({});
 
   const progressValue = Math.round((currentSection / SECTIONS.length) * 100);
   const isFirst = currentSection === 0;
   const isLast = currentSection === SECTIONS.length - 1;
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [currentSection]);
+
   function handlePrev() {
     if (!isFirst) setCurrentSection((prev) => prev - 1);
   }
+
   function handleNext() {
     if (!isLast) setCurrentSection((prev) => prev + 1);
+  }
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    const errors = validateAccount(accountData);
+    if (Object.keys(errors).length > 0) {
+      setAccountErrors(errors);
+      return;
+    }
+    // TODO: POST to Rails API
   }
 
   function renderSection() {
@@ -65,8 +78,14 @@ export default function QuestionnairePage() {
         return (
           <AcademicSection data={academicData} onChange={setAcademicData} />
         );
-      default:
-        return <NextSection />;
+      case "account":
+        return (
+          <AccountSection
+            data={accountData}
+            errors={accountErrors}
+            onChange={setAccountData}
+          />
+        );
     }
   }
 
@@ -89,7 +108,7 @@ export default function QuestionnairePage() {
       </section>
 
       <section aria-labelledby="section-questionnaire" className="mt-8">
-        <form>
+        <form onSubmit={handleSubmit}>
           {renderSection()}
 
           <div className="mt-8 flex justify-between">

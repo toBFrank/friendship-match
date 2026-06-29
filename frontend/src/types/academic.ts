@@ -28,6 +28,12 @@ export const GRADUATE_YEARS: AcademicYear[] = [
   "3rd Year+ (PhD)",
 ];
 
+export interface University {
+  id: number;
+  name: string;
+  country: string;
+}
+
 export interface Program {
   id: number;
   name: string;
@@ -43,6 +49,7 @@ export interface Course {
 }
 
 export interface AcademicFormData {
+  universityId: number | null;
   degreeLevel: DegreeLevel | null;
   programId: number | null;
   year: AcademicYear | null;
