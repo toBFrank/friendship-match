@@ -8,6 +8,7 @@ import type { AcademicFormData } from "../../types/academic";
 import AccountSection, { validateAccount } from "./AccountSection";
 import type { AccountFormData } from "../../types/account";
 import { INITIAL_ACCOUNT_DATA } from "../../types/account";
+import { getDomains } from "../../api/accountService";
 
 const SECTIONS = ["interests", "personality", "academic", "account"] as const;
 type Section = (typeof SECTIONS)[number];
@@ -33,6 +34,7 @@ export default function QuestionnairePage() {
     year: null,
     courseIds: [],
   });
+  const [validDomains, setValidDomains] = useState<string[]>([]);
   const [accountData, setAccountData] =
     useState<AccountFormData>(INITIAL_ACCOUNT_DATA);
   const [accountErrors, setAccountErrors] = useState({});
@@ -45,6 +47,18 @@ export default function QuestionnairePage() {
     window.scrollTo(0, 0);
   }, [currentSection]);
 
+    useEffect(() => {
+      const fetchDomains = async () => {
+        try {
+          const data = await getDomains();
+          setValidDomains(data);
+        } catch {
+          setAccountErrors({ email: "Failed to load valid domains. Please refresh." });
+        }
+      };
+      fetchDomains();
+    }, []);
+
   function handlePrev() {
     if (!isFirst) setCurrentSection((prev) => prev - 1);
   }
@@ -53,7 +67,7 @@ export default function QuestionnairePage() {
     if (!isLast) setCurrentSection((prev) => prev + 1);
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  function handleSubmit(e: SubmitEvent) {
     e.preventDefault();
     const errors = validateAccount(accountData);
     if (Object.keys(errors).length > 0) {
