@@ -43,9 +43,9 @@ export default function AccountSection({
   return (
     <section aria-labelledby="account-heading">
       <h2 id="account-heading" className="text-2xl font-semibold">
-        Create your account
+        Who are you?
       </h2>
-      <p>Use your school email to verify your enrollment.</p>
+      <p>Some final details before we can match you.</p>
 
       <div className="mt-6 flex flex-col gap-4">
         <div className="flex gap-4">
