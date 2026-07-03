@@ -4,8 +4,7 @@ import type {
   PersonalityAnswer,
   PersonalityQuestion,
 } from "../../types/personality";
-import { RadioGroup } from "@base-ui/react/radio-group";
-import { Radio } from "@base-ui/react/radio";
+import LikertScale from "../../components/ui/LikertScale";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -26,13 +25,6 @@ const CATEGORY_LABELS: Record<Category, string> = {
   Environment: "Environment",
   OCEAN: "Personality",
 };
-
-const LIKERT_OPTIONS = [
-  { value: "1", label: "Strongly Disagree" },
-  { value: "2", label: "Disagree" },
-  { value: "3", label: "Agree" },
-  { value: "4", label: "Strongly Agree" },
-];
 
 interface PersonalitySectionProps {
   answers: PersonalityAnswer[];
@@ -102,44 +94,23 @@ export default function PersonalitySection({
                 )?.likertValue;
 
                 return (
-                  <fieldset key={question.id} className="mt-8 border-none p-0">
-                    <legend className="text-lg italic mb-2">
-                      {question.text}
-                    </legend>
-
-                    <RadioGroup
-                      value={currentValue != null ? String(currentValue) : null}
-                      onValueChange={(value) =>
-                        handleSelect(question.id, value)
+                  <LikertScale
+                    key={question.id}
+                    id={`question-${question.id}`}
+                    question={question.text}
+                    value={currentValue}
+                    onChange={(v) => {
+                      if (v === null) {
+                        onChange(
+                          answers.filter(
+                            (a) => a.questionId !== question.id,
+                          ),
+                        );
+                      } else {
+                        handleSelect(question.id, String(v));
                       }
-                      className="flex flex-row justify-evenly"
-                    >
-                      {LIKERT_OPTIONS.map((option) => (
-                        <label
-                          key={option.value}
-                          className="flex flex-col-reverse items-center gap-2 text-sm cursor-pointer select-none flex-1 text-center"
-                        >
-                          <Radio.Root
-                            value={option.value}
-                            className="flex size-10 shrink-0 items-center justify-center border rounded-full border-black bg-white text-white data-checked:bg-black focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-                            onClick={() => {
-                              // TODO: check if there is a cleaner way to deselect option
-                              if (currentValue === Number(option.value)) {
-                                onChange(
-                                  answers.filter(
-                                    (a) => a.questionId !== question.id,
-                                  ),
-                                );
-                              }
-                            }}
-                          >
-                            <Radio.Indicator className="flex items-center justify-center data-unchecked:hidden before:size-2 before:rounded-full before:bg-current" />
-                          </Radio.Root>
-                          {option.label}
-                        </label>
-                      ))}
-                    </RadioGroup>
-                  </fieldset>
+                    }}
+                  />
                 );
               })}
             </div>
