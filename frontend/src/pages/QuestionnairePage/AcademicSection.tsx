@@ -110,7 +110,7 @@ export default function AcademicSection({
   return (
     <section aria-labelledby="academic-heading">
       <h2 id="academic-heading" className="text-2xl font-semibold">
-        Your academic background
+        What is your academic background?
       </h2>
       <p>Tell us about your studies.</p>
 
