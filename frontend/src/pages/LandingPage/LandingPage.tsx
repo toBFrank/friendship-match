@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router";
-import "./LandingPage.css";
+import "../../styles/LandingPage.css";
 
 /* ─── Types ────────────────────────────────────────── */
 interface FaqItem {
@@ -9,23 +9,8 @@ interface FaqItem {
   answer: string;
 }
 
-interface MatchProfile {
-  emoji: string;
-  name: string;
-  tag: string;
-  score: number;
-}
-
 /* ─── Data ─────────────────────────────────────────── */
 const WAITLIST_COUNT = 0; // ENABLE: Replace with real count from Supabase
-
-const MATCH_PROFILES: MatchProfile[] = [
-  { emoji: "🎸", name: "Alex M.",    tag: "Music · CS · '27",  score: 97 },
-  { emoji: "📚", name: "Jordan K.",  tag: "Bio · Reading · '26", score: 93 },
-  { emoji: "🎮", name: "Sam T.",     tag: "Gaming · Econ · '27", score: 91 },
-  { emoji: "🌿", name: "Riley O.",   tag: "Art · Env Sci · '25", score: 88 },
-  { emoji: "🏃", name: "Morgan L.",  tag: "Track · Psych · '28", score: 85 },
-];
 
 const FAQ_ITEMS: FaqItem[] = [
   {
@@ -49,223 +34,6 @@ const FAQ_ITEMS: FaqItem[] = [
 ];
 
 /* ─── Sub-components ───────────────────────────────── */
-function Leaderboard() {
-  const [animated, setAnimated] = useState(false);
-
-  useEffect(() => {
-    const t = setTimeout(() => setAnimated(true), 600);
-    return () => clearTimeout(t);
-  }, []);
-
-  return (
-    <div className="hero-visual">
-      <div className="leaderboard">
-        <div className="leaderboard-header">
-          <span className="leaderboard-title">Your Matches</span>
-          <span className="leaderboard-badge">Updated today</span>
-        </div>
-        <ul className="leaderboard-list" aria-label="Top compatible matches">
-          {MATCH_PROFILES.map((profile, i) => (
-            <li
-              key={profile.name}
-              className="leaderboard-item"
-              style={{ animationDelay: `${0.5 + i * 0.1}s` }}
-            >
-              <span className="leaderboard-rank">#{i + 1}</span>
-              <div className="leaderboard-avatar" aria-hidden="true">
-                {profile.emoji}
-              </div>
-              <div className="leaderboard-info">
-                <div className="leaderboard-name">{profile.name}</div>
-                <div className="leaderboard-tag">{profile.tag}</div>
-              </div>
-              <div className="leaderboard-score">
-                <div className="score-bar-track">
-                  <div
-                    className="score-bar-fill"
-                    style={{ width: animated ? `${profile.score}%` : "0%" }}
-                    role="meter"
-                    aria-valuenow={profile.score}
-                    aria-valuemin={0}
-                    aria-valuemax={100}
-                    aria-label={`${profile.score}% compatibility`}
-                  />
-                </div>
-                <span className="score-value">{profile.score}%</span>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
-  );
-}
-
-function QuestionnaireMockup() {
-  const tabs = ["Interests", "Personality", "Academic", "Account"];
-  const [activeTab, setActiveTab] = useState(0);
-  const [selectedOption, setSelectedOption] = useState(1);
-
-  const questions = [
-    {
-      text: "What best describes your social style?",
-      options: ["Homebody", "Small groups", "Big social events", "Depends on mood"],
-    },
-    {
-      text: "Pick your go-to hobby:",
-      options: ["Making music", "Reading / writing", "Gaming", "Outdoors"],
-    },
-    {
-      text: "Your study vibe:",
-      options: ["Solo deep work", "Study groups", "Library + headphones", "Cafes"],
-    },
-  ];
-
-  const [qIndex, setQIndex] = useState(0);
-
-  useEffect(() => {
-    const cycle = setInterval(() => {
-      setSelectedOption((s) => (s + 1) % 4);
-    }, 1400);
-    return () => clearInterval(cycle);
-  }, []);
-
-  useEffect(() => {
-    const tabCycle = setInterval(() => {
-      setActiveTab((t) => (t + 1) % tabs.length);
-      setQIndex((q) => (q + 1) % questions.length);
-    }, 3000);
-    return () => clearInterval(tabCycle);
-  }, []);
-
-  const q = questions[qIndex];
-
-  return (
-    <div className="questionnaire-mockup">
-      <div className="q-section-tabs">
-        {tabs.map((tab, i) => (
-          <button
-            key={tab}
-            className={`q-tab${i === activeTab ? " active" : ""}`}
-            tabIndex={-1}
-            aria-hidden="true"
-          >
-            {tab}
-          </button>
-        ))}
-      </div>
-      <div className="q-card">
-        <div className="q-question">{q.text}</div>
-        <div className="q-options">
-          {q.options.map((opt, i) => (
-            <div
-              key={opt}
-              className={`q-option${i === selectedOption ? " selected" : ""}`}
-              aria-hidden="true"
-            >
-              <div className="q-option-dot" />
-              {opt}
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function MatchCardMockup() {
-  const [showNew, setShowNew] = useState(false);
-  const cards = [
-    { emoji: "🎵", name: "Casey R.", compat: 96 },
-    { emoji: "📸", name: "Drew M.", compat: 94 },
-    { emoji: "🧩", name: "Taylor W.", compat: 91 },
-  ];
-  const [cardIndex, setCardIndex] = useState(0);
-
-  useEffect(() => {
-    const t = setInterval(() => {
-      setShowNew(true);
-      setTimeout(() => {
-        setCardIndex((i) => (i + 1) % cards.length);
-        setShowNew(false);
-      }, 800);
-    }, 2800);
-    return () => clearInterval(t);
-  }, []);
-
-  const card = cards[cardIndex];
-
-  return (
-    <div className="match-stack">
-      {/* Back card */}
-      <div className="match-card card-back" aria-hidden="true" />
-      {/* Front card */}
-      <div
-        className="match-card card-front"
-        key={cardIndex}
-        style={{
-          animation: showNew
-            ? "cardRise 0.5s ease both"
-            : undefined,
-        }}
-      >
-        <div className="match-avatar">{card.emoji}</div>
-        <div className="match-name">{card.name}</div>
-        <div className="match-compat">
-          ✦ {card.compat}% match
-        </div>
-        {showNew && (
-          <div className="new-match-badge" aria-live="polite">
-            New Match!
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
-
-function FriendshipScoreMockup() {
-  const [score, setScore] = useState(42);
-  const activities = [
-    { icon: "☕", text: "Grab coffee together", points: "+15", done: true },
-    { icon: "📚", text: "Study session", points: "+10", done: true },
-    { icon: "🎬", text: "Movie night", points: "+12", done: false },
-    { icon: "🏃", text: "Morning run", points: "+8",  done: false },
-  ];
-
-  useEffect(() => {
-    let val = 42;
-    const ticker = setInterval(() => {
-      val = val < 89 ? val + 1 : 42;
-      setScore(val);
-    }, 80);
-    return () => clearInterval(ticker);
-  }, []);
-
-  return (
-    <div className="friendship-mockup">
-      <div
-        className="friendship-score-ring"
-        aria-label={`Friendship score: ${score}`}
-      >
-        <span className="friendship-score-number">{score}</span>
-      </div>
-      <p style={{ fontSize: "0.75rem", color: "#6b6b6b", margin: 0, fontWeight: 600 }}>
-        Friendship Score
-      </p>
-      <ul className="friendship-activity-list" aria-label="Weekly activities">
-        {activities.map((a) => (
-          <li key={a.text} className={`friendship-activity${a.done ? " done" : ""}`}>
-            <span className="friendship-activity-icon">{a.icon}</span>
-            <span className="friendship-activity-text">{a.text}</span>
-            <span className="friendship-activity-points">{a.points}</span>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-
 function FaqAccordion() {
   const [openId, setOpenId] = useState<string | null>(null);
 
@@ -401,11 +169,6 @@ export default function LandingPage() {
       {/* ── 1. Hero ──────────────────────────────────── */}
       <section id="hero" aria-labelledby="hero-headline">
         <div className="hero">
-          <div className="hero-eyebrow">
-            <span className="hero-eyebrow-dot" aria-hidden="true" />
-            Campus-first friend matching
-          </div>
-
           <h1 id="hero-headline">
             Find your people<br />on campus.
           </h1>
@@ -424,7 +187,12 @@ export default function LandingPage() {
             </a>
           </div>
 
-          <Leaderboard />
+          <div className="hero-visual">
+            {/* TODO: Replace with image asset */}
+            <div className="placeholder-box">
+              Leaderboard Placeholder
+            </div>
+          </div>
         </div>
       </section>
 
@@ -481,8 +249,10 @@ export default function LandingPage() {
                 </p>
               </div>
               <div className="feature-visual" aria-label="Questionnaire walkthrough preview">
-                {/* TODO: Replace with gif/video: <video src="/assets/questionnaire.mp4" autoPlay muted loop playsInline /> */}
-                <QuestionnaireMockup />
+                {/* TODO: Replace with gif/video */}
+                <div className="placeholder-box">
+                  Questionnaire Walkthrough Placeholder
+                </div>
               </div>
             </div>
 
@@ -497,8 +267,10 @@ export default function LandingPage() {
                 </p>
               </div>
               <div className="feature-visual" aria-label="New match card preview">
-                {/* TODO: Replace with gif/video: <video src="/assets/new-match.mp4" autoPlay muted loop playsInline /> */}
-                <MatchCardMockup />
+                {/* TODO: Replace with gif/video */}
+                <div className="placeholder-box">
+                  New Match Card Placeholder
+                </div>
               </div>
             </div>
 
@@ -513,8 +285,10 @@ export default function LandingPage() {
                 </p>
               </div>
               <div className="feature-visual" aria-label="Friendship score animation preview">
-                {/* TODO: Replace with gif/video: <video src="/assets/friendship-score.mp4" autoPlay muted loop playsInline /> */}
-                <FriendshipScoreMockup />
+                {/* TODO: Replace with gif/video */}
+                <div className="placeholder-box">
+                  Friendship Score Placeholder
+                </div>
               </div>
             </div>
           </div>
@@ -537,7 +311,7 @@ export default function LandingPage() {
               Fill out your profile and get matched when we launch.
             </p>
             <Link to="/questionnaire" className="btn-primary-inverted" id="final-cta">
-              Find Flock →
+              Find Your Flock →
             </Link>
           </div>
         </div>

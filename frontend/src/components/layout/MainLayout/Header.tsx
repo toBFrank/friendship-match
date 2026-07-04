@@ -75,7 +75,6 @@ export default function Header() {
             padding: "0.5rem 1.25rem",
             backgroundColor: "#000",
             color: "#fff",
-            borderRadius: "9999px",
             fontSize: "0.875rem",
             fontWeight: 600,
             textDecoration: "none",
@@ -91,7 +90,7 @@ export default function Header() {
             (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
           }}
         >
-          Find Flock
+          Find Your Flock
           <span aria-hidden="true">→</span>
         </Link>
       </nav>
