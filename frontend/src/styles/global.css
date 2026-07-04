@@ -2,48 +2,112 @@
   /* Typography */
   /* Font */
   --font-sans: "Geist Mono", system-ui, -apple-system, sans-serif;
-  /* Size 
-   * H0 text-4xl font-extrabold
+  /* Size
+   * H0 text-4xl font-extrabold  (hero headline)
    * H1 text-3xl font-bold
    * H2 text-2xl font-semibold
    * H3 text-xl font-medium
    * H4 text-lg font-medium
   */
-  /* Colors */
-  /* TODO: Create a color palette */
-  /* Theme
-   * - Primary 60%: Large backgrounds, main headers, primary navigation bars, and key branding assets
-   * - Secondary 30%: Secondary buttons, subheadings, supporting text, charts, testimonials, and active/inactive icons
-   * - Accent 10%: Primary Calls-to-Action (CTAs), Floating Action Buttons (FABs), highlighted links, notifications, and important badges
-  */
-  --color-primary: white;
-  --color-secondary: grey;
-  --color-accent: black;
+
+  /* ─── Color Palette ─────────────────────────────
+   * Black & White / High-contrast
+   * Primary 60%: Large backgrounds, main headers, primary navigation bars
+   * Secondary 30%: Secondary elements, subheadings, supporting text
+   * Accent 10%: CTAs, FABs, highlighted links, badges
+   * ──────────────────────────────────────────────── */
+  --color-primary: #ffffff;
+  --color-secondary: #6b6b6b;
+  --color-accent: #000000;
+
   /* Surface */
-  --color-bg-main: white;
-  --color-bg-surface: black;
+  --color-bg-main: #ffffff;
+  --color-bg-surface: #f5f5f5;
+  --color-bg-inverted: #000000;
+
   /* Text */
-  --color-text-main: black;
-  --color-text-muted: grey;
+  --color-text-main: #000000;
+  --color-text-muted: #6b6b6b;
+  --color-text-inverted: #ffffff;
+
+  /* Border */
+  --color-border: #e5e5e5;
+  --color-border-strong: #000000;
 }
 
+/* ─── Animations ──────────────────────────────────────── */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-8px); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(32px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes cardRise {
+  from { opacity: 0; transform: translateY(16px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes scoreCount {
+  from { opacity: 0; transform: scale(0.8); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* ─── Utility Classes ─────────────────────────────────── */
 @layer utilities {
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-  .no-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  .animate-float      { animation: float 3s ease-in-out infinite; }
+  .animate-fade-in-up { animation: fadeInUp 0.6s ease forwards; }
+  .animate-slide-right{ animation: slideInRight 0.5s ease forwards; }
+  .animate-card-rise  { animation: cardRise 0.5s ease forwards; }
+
+  .text-balance { text-wrap: balance; }
+}
+
+/* ─── Base ────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   position: relative;
   overflow-x: hidden;
-  scroll-behavior: smooth;
+  background-color: var(--color-bg-main);
+  color: var(--color-text-main);
 }
 
 .root {
   isolation: isolate;
+}
+
+/* ─── Section scroll anchoring ────────────────────────── */
+section[id] {
+  scroll-margin-top: 72px; /* header height */
 }
