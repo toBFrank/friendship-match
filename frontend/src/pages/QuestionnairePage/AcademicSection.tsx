@@ -13,26 +13,25 @@ import type {
   Course,
   University,
 } from "../../types/academic";
-import { UNDERGRADUATE_YEARS, GRADUATE_YEARS } from "../../types/academic";
+import { UNDERGRADUATE_YEARS, GRADUATE_YEARS, DEGREE_LEVELS } from "../../types/academic";
 import EntitySearch, { type SearchItem } from "../../components/ui/EntitySearch";
 import SuggestForm from "../../components/ui/SuggestForm";
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
-const DEGREE_LEVELS: DegreeLevel[] = ["Undergraduate", "Graduate"];
-
 const selectClass = [
-  "flex h-9 w-full items-center justify-between border border-black bg-white px-3 text-sm",
-  "focus-visible:outline-2 focus-visible:-outline-offset-1 focus-visible:outline-black",
+  "flex h-9 w-full items-center justify-between border border-[var(--color-bg-inverted)] bg-white px-3 text-sm",
+  "focus-visible:outline-2 focus-visible:-outline-offset-1 focus-visible:outline-[var(--color-bg-inverted)]",
 ].join(" ");
 
 const popupClass =
-  "border border-black bg-white z-50 max-h-[min(16rem,52vh)] overflow-y-auto no-scrollbar";
+  "border border-[var(--color-bg-inverted)] bg-white z-50 max-h-[min(16rem,52vh)] overflow-y-auto no-scrollbar";
 
 const itemClass = [
   "flex items-center px-3 py-1.5 text-sm cursor-pointer select-none",
-  "data-highlighted:bg-black data-highlighted:text-white",
+  "data-highlighted:bg-[var(--color-bg-inverted)] data-highlighted:text-white",
 ].join(" ");
+
 
 interface AcademicSectionProps {
   data: AcademicFormData;
@@ -108,7 +107,7 @@ export default function AcademicSection({
   if (error) return <p role="alert">{error}</p>;
 
   return (
-    <section aria-labelledby="academic-heading">
+    <section aria-labelledby="academic-heading" className="animate-appear">
       <h2 id="academic-heading" className="text-2xl font-semibold">
         What is your academic background?
       </h2>
@@ -116,7 +115,7 @@ export default function AcademicSection({
 
       <div className="mt-6 flex flex-col gap-6">
         {/* University */}
-        <fieldset className="border-none p-0">
+        <fieldset className="border-none p-0 animate-appear">
           <legend className="text-sm mb-2">University</legend>
           <EntitySearch
             items={universityItems}
@@ -133,7 +132,7 @@ export default function AcademicSection({
 
         {/* Degree Level */}
         {data.universityId && (
-          <fieldset className="border-none p-0">
+          <fieldset className="border-none p-0 animate-appear">
             <legend className="text-sm mb-2">Degree level</legend>
             <Select.Root
               value={data.degreeLevel ?? null}
@@ -168,7 +167,7 @@ export default function AcademicSection({
 
         {/* Program */}
         {data.degreeLevel && (
-          <fieldset className="border-none p-0">
+          <fieldset className="border-none p-0 animate-appear">
             <legend className="text-sm mb-2">Program</legend>
             <Select.Root
               value={data.programId != null ? String(data.programId) : null}
@@ -202,7 +201,7 @@ export default function AcademicSection({
               </Select.Portal>
             </Select.Root>
 
-            {!suggestingProgram && !submittedProgram && (
+            {/* {!suggestingProgram && !submittedProgram && (
               <button
                 type="button"
                 onClick={() => setSuggestingProgram(true)}
@@ -227,13 +226,13 @@ export default function AcademicSection({
               <p className="mt-2 text-sm">
                 Thanks! "{submittedProgram}" has been submitted for review.
               </p>
-            )}
+            )} */}
           </fieldset>
         )}
 
         {/* Year */}
         {data.programId && (
-          <fieldset className="border-none p-0">
+          <fieldset className="border-none p-0 animate-appear">
             <legend className="text-sm mb-2">Year of study</legend>
             <Select.Root value={data.year ?? null} onValueChange={handleYear}>
               <Select.Trigger className={selectClass}>
@@ -265,7 +264,7 @@ export default function AcademicSection({
 
         {/* Current Courses */}
         {data.programId && (
-          <fieldset className="border-none p-0 mb-4">
+          <fieldset className="border-none p-0 mb-4 animate-appear">
             <legend className="text-sm mb-2">Current courses</legend>
             <EntitySearch
               items={courseItems}

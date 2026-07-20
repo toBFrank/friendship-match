@@ -19,10 +19,8 @@ export default function Header() {
         top: 0,
         zIndex: 50,
         width: "100%",
-        borderBottom: scrolled ? "1px solid #e5e5e5" : "1px solid transparent",
-        backgroundColor: scrolled ? "rgba(255,255,255,0.92)" : "#ffffff",
-        backdropFilter: scrolled ? "blur(12px)" : "none",
-        WebkitBackdropFilter: scrolled ? "blur(12px)" : "none",
+        borderBottom: scrolled ? "1px solid var(--color-bg-inverted)" : "1px solid transparent",
+        backgroundColor: scrolled ? "var(--color-bg-inverted)" : "var(--color-bg-main)",
         transition: "border-color 0.2s, background-color 0.2s",
       }}
     >
@@ -46,7 +44,8 @@ export default function Header() {
             alignItems: "center",
             gap: "0.5rem",
             textDecoration: "none",
-            color: "#000",
+            color: scrolled ? "var(--color-text-inverted)" : "var(--color-text-main)",
+            transition: "color 0.2s",
           }}
         >
           {/* TODO: Replace with image asset:
@@ -71,22 +70,22 @@ export default function Header() {
           style={{
             display: "inline-flex",
             alignItems: "center",
-            gap: "0.375rem",
-            padding: "0.5rem 1.25rem",
-            backgroundColor: "#000",
-            color: "#fff",
+            gap: "0.5rem",
+            padding: "1rem 1.25rem",
+            backgroundColor: scrolled ? "var(--color-bg-main)" : "var(--color-bg-inverted)",
+            color: scrolled ? "var(--color-text-main)" : "var(--color-text-inverted)",
             fontSize: "0.875rem",
             fontWeight: 600,
             textDecoration: "none",
-            transition: "background-color 0.15s, transform 0.15s",
+            transition: "background-color 0.2s, color 0.2s, transform 0.15s",
             fontFamily: "inherit",
           }}
           onMouseEnter={(e) => {
-            (e.currentTarget as HTMLElement).style.backgroundColor = "#222";
+            (e.currentTarget as HTMLElement).style.backgroundColor = scrolled ? "#e5e5e5" : "var(--color-secondary)";
             (e.currentTarget as HTMLElement).style.transform = "translateY(-1px)";
           }}
           onMouseLeave={(e) => {
-            (e.currentTarget as HTMLElement).style.backgroundColor = "#000";
+            (e.currentTarget as HTMLElement).style.backgroundColor = scrolled ? "var(--color-bg-main)" : "var(--color-bg-inverted)";
             (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
           }}
         >

@@ -11,28 +11,28 @@
   */
 
   /* ─── Color Palette ─────────────────────────────
-   * Black & White / High-contrast
+   * [var(--color-bg-inverted)] & White / High-contrast
    * Primary 60%: Large backgrounds, main headers, primary navigation bars
    * Secondary 30%: Secondary elements, subheadings, supporting text
    * Accent 10%: CTAs, FABs, highlighted links, badges
    * ──────────────────────────────────────────────── */
   --color-primary: #ffffff;
   --color-secondary: #6b6b6b;
-  --color-accent: #000000;
+  --color-accent: #121212;
 
   /* Surface */
   --color-bg-main: #ffffff;
   --color-bg-surface: #f5f5f5;
-  --color-bg-inverted: #000000;
+  --color-bg-inverted: #121212;
 
   /* Text */
-  --color-text-main: #000000;
+  --color-text-main: #121212;
   --color-text-muted: #6b6b6b;
   --color-text-inverted: #ffffff;
 
   /* Border */
   --color-border: #e5e5e5;
-  --color-border-strong: #000000;
+  --color-border-strong: #121212;
 }
 
 /* ─── Utility Classes ─────────────────────────────────── */
@@ -41,6 +41,10 @@
   .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
   .text-balance { text-wrap: balance; }
+}
+
+@utility animate-appear {
+  @apply animate-in fade-in slide-in-from-bottom-2 duration-800;
 }
 
 /* ─── Base ────────────────────────────────────────────── */
@@ -62,6 +66,7 @@ body {
 }
 
 /* ─── Section scroll anchoring ────────────────────────── */
+/*make all sections animate-appear*/
 section[id] {
   scroll-margin-top: 72px; /* header height */
 }

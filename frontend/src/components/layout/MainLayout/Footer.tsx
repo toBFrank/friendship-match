@@ -7,8 +7,8 @@ export default function Footer() {
     <footer
       style={{
         width: "100%",
-        borderTop: "1px solid #e5e5e5",
-        backgroundColor: "#fff",
+        borderTop: "1px solid var(--color-bg-inverted)",
+        backgroundColor: "var(--color-bg-inverted)",
         padding: "3rem 1.5rem 2rem",
       }}
     >
@@ -42,13 +42,13 @@ export default function Footer() {
                 fontSize: "1.25rem",
                 fontWeight: 800,
                 letterSpacing: "-0.04em",
-                color: "#000",
+                color: "var(--color-text-inverted)",
                 textDecoration: "none",
               }}
             >
               Flocker
             </Link>
-            <p style={{ fontSize: "0.875rem", color: "#6b6b6b", margin: 0 }}>
+            <p style={{ fontSize: "0.875rem", color: "var(--color-text-muted)", margin: 0 }}>
               Find your people on campus.
             </p>
           </div>
@@ -57,7 +57,7 @@ export default function Footer() {
           <nav aria-label="Footer navigation" style={{ display: "flex", gap: "4rem", flexWrap: "wrap" }}>
             {/* Socials / Contacts */}
             <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-              <p style={{ fontSize: "1rem", fontWeight: 700, color: "#000", margin: 0, textTransform: "uppercase" }}>
+              <p style={{ fontSize: "1rem", fontWeight: 700, color: "var(--color-text-inverted)", margin: 0, textTransform: "uppercase" }}>
                 Connect
               </p>
               <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: "1rem" }}>
@@ -69,7 +69,7 @@ export default function Footer() {
                     id="footer-instagram"
                     style={{
                       fontSize: "1rem",
-                      color: "#6b6b6b",
+                      color: "var(--color-text-muted)",
                       textDecoration: "none",
                       display: "flex",
                       alignItems: "center",
@@ -77,10 +77,10 @@ export default function Footer() {
                       minHeight: "24px",
                       transition: "color 0.2s",
                     }}
-                    onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "#000")}
-                    onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "#6b6b6b")}
+                    onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "var(--color-text-inverted)")}
+                    onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "var(--color-text-muted)")}
                   >
-                    <img src="/icons/insta_logo.png" alt="" width="24" height="24" style={{ objectFit: "contain" }} />
+                    <img src="/icons/insta_logo.png" alt="" width="24" height="24" style={{ objectFit: "contain", filter: "invert(1)" }} />
                     Instagram
                   </a>
                 </li>
@@ -90,7 +90,7 @@ export default function Footer() {
                     id="footer-email"
                     style={{
                       fontSize: "1rem",
-                      color: "#6b6b6b",
+                      color: "var(--color-text-muted)",
                       textDecoration: "none",
                       display: "flex",
                       alignItems: "center",
@@ -98,10 +98,10 @@ export default function Footer() {
                       minHeight: "24px",
                       transition: "color 0.2s",
                     }}
-                    onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "#000")}
-                    onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "#6b6b6b")}
+                    onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "var(--color-text-inverted)")}
+                    onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "var(--color-text-muted)")}
                   >
-                    <img src="/icons/email.png" alt="" width="24" height="24" style={{ objectFit: "contain" }} />
+                    <img src="/icons/email.png" alt="" width="24" height="24" style={{ objectFit: "contain", filter: "invert(1)" }} />
                     Email
                   </a>
                 </li>
@@ -113,7 +113,7 @@ export default function Footer() {
                     id="footer-portfolio"
                     style={{
                       fontSize: "1rem",
-                      color: "#6b6b6b",
+                      color: "var(--color-text-muted)",
                       textDecoration: "none",
                       display: "flex",
                       alignItems: "center",
@@ -121,10 +121,10 @@ export default function Footer() {
                       minHeight: "24px",
                       transition: "color 0.2s",
                     }}
-                    onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "#000")}
-                    onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "#6b6b6b")}
+                    onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "var(--color-text-inverted)")}
+                    onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "var(--color-text-muted)")}
                   >
-                    <img src="/icons/franco_icon_no_bg.png" alt="" width="24" height="24" style={{ objectFit: "contain" }} />
+                    <img src="/icons/franco_icon_no_bg.png" alt="" width="24" height="24" style={{ objectFit: "contain"}} />
                     Portfolio
                   </a>
                 </li>
@@ -133,7 +133,7 @@ export default function Footer() {
 
             {/* Legal */}
             <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-              <p style={{ fontSize: "1rem", fontWeight: 700, color: "#000", margin: 0, textTransform: "uppercase" }}>
+              <p style={{ fontSize: "1rem", fontWeight: 700, color: "var(--color-text-inverted)", margin: 0, textTransform: "uppercase" }}>
                 Legal
               </p>
               <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: "1rem" }}>
@@ -143,15 +143,15 @@ export default function Footer() {
                     id="footer-terms"
                     style={{
                       fontSize: "1rem",
-                      color: "#6b6b6b",
+                      color: "var(--color-text-muted)",
                       textDecoration: "none",
                       display: "flex",
                       alignItems: "center",
                       minHeight: "24px",
                       transition: "color 0.2s",
                     }}
-                    onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "#000")}
-                    onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "#6b6b6b")}
+                    onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "var(--color-text-inverted)")}
+                    onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "var(--color-text-muted)")}
                   >
                     Terms of Service
                   </Link>
@@ -162,15 +162,15 @@ export default function Footer() {
                     id="footer-privacy"
                     style={{
                       fontSize: "1rem",
-                      color: "#6b6b6b",
+                      color: "var(--color-text-muted)",
                       textDecoration: "none",
                       display: "flex",
                       alignItems: "center",
                       minHeight: "24px",
                       transition: "color 0.2s",
                     }}
-                    onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "#000")}
-                    onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "#6b6b6b")}
+                    onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "var(--color-text-inverted)")}
+                    onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "var(--color-text-muted)")}
                   >
                     Privacy Policy
                   </Link>
@@ -181,15 +181,15 @@ export default function Footer() {
                     id="footer-credits"
                     style={{
                       fontSize: "1rem",
-                      color: "#6b6b6b",
+                      color: "var(--color-text-muted)",
                       textDecoration: "none",
                       display: "flex",
                       alignItems: "center",
                       minHeight: "24px",
                       transition: "color 0.2s",
                     }}
-                    onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "#000")}
-                    onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "#6b6b6b")}
+                    onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "var(--color-text-inverted)")}
+                    onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "var(--color-text-muted)")}
                   >
                     Credits
                   </Link>
@@ -200,8 +200,8 @@ export default function Footer() {
         </div>
 
         {/* Bottom: copyright */}
-        <div style={{ borderTop: "1px solid #e5e5e5", paddingTop: "2rem" }}>
-          <p style={{ fontSize: "1rem", color: "#9ca3af", margin: 0 }}>
+        <div style={{ borderTop: "1px solid #333", paddingTop: "2rem" }}>
+          <p style={{ fontSize: "1rem", color: "var(--color-text-muted)", margin: 0 }}>
             © {year} Flocker. All rights reserved.
           </p>
         </div>

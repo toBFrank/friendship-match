@@ -19,6 +19,12 @@ const SECTION_LABELS: Record<Section, string> = {
   academic: "Academic",
   account: "Account",
 };
+const SECTION_HINTS: Record<Section, string> = {
+  interests: "Select at least 2 interests to continue.",
+  personality: "Answer all questions to continue.",
+  academic: "Complete all fields to continue.",
+  account: "Fill in all required fields to submit.",
+};
 
 export default function QuestionnairePage() {
   const [currentSection, setCurrentSection] = useState<number>(0);
@@ -27,6 +33,7 @@ export default function QuestionnairePage() {
   const [personalityAnswers, setPersonalityAnswers] = useState<
     PersonalityAnswer[]
   >([]);
+  const [personalityQuestionsLength, setPersonalityQuestionsLength] = useState<number>(0);
   const [academicData, setAcademicData] = useState<AcademicFormData>({
     universityId: null,
     degreeLevel: null,
@@ -42,6 +49,7 @@ export default function QuestionnairePage() {
   const progressValue = Math.round((currentSection / SECTIONS.length) * 100);
   const isFirst = currentSection === 0;
   const isLast = currentSection === SECTIONS.length - 1;
+  const canAdvance = isSectionValid(SECTIONS[currentSection]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -59,12 +67,29 @@ export default function QuestionnairePage() {
       fetchDomains();
     }, []);
 
+  function isSectionValid(section: Section): boolean {
+    switch (section) {
+      case "interests":
+        return interests.length >= 2 && interests.length <= 10;
+      case "personality":
+        return personalityAnswers.length == personalityQuestionsLength && personalityQuestionsLength > 0;
+      case "academic":
+        // return !!academicData.programId && !!academicData.universityId;
+        return true;
+      case "account":
+        // return Object.keys(accountErrors).length === 0;
+        return true;
+      default:
+        return false;
+    }
+  }
+
   function handlePrev() {
     if (!isFirst) setCurrentSection((prev) => prev - 1);
   }
 
   function handleNext() {
-    if (!isLast) setCurrentSection((prev) => prev + 1);
+    if (!isLast && canAdvance) setCurrentSection((prev) => prev + 1);
   }
 
   function handleSubmit(e: SubmitEvent) {
@@ -86,6 +111,7 @@ export default function QuestionnairePage() {
           <PersonalitySection
             answers={personalityAnswers}
             onChange={setPersonalityAnswers}
+            onQuestionsLoaded={setPersonalityQuestionsLength}
           />
         );
       case "academic":
@@ -136,9 +162,16 @@ export default function QuestionnairePage() {
             </button>
 
             {!isLast ? (
-              <button type="button" onClick={handleNext}>
-                Next: {SECTION_LABELS[SECTIONS[currentSection + 1]]} →
-              </button>
+              <div className="flex flex-col items-end gap-1">
+                {!canAdvance && (
+                  <p className="text-sm text-(--color-secondary)">
+                    {SECTION_HINTS[SECTIONS[currentSection]]}
+                  </p>
+                )}
+                <button type="button" className="disabled:opacity-50" onClick={handleNext} disabled={!canAdvance}>
+                  Next: {SECTION_LABELS[SECTIONS[currentSection + 1]]} →
+                </button>
+              </div>
             ) : (
               <button type="submit">Submit</button>
             )}

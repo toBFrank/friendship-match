@@ -41,7 +41,7 @@ export default function AccountSection({
   // TODO: Implement true account creation with passwords.
 
   return (
-    <section aria-labelledby="account-heading">
+    <section aria-labelledby="account-heading" className="animate-appear">
       <h2 id="account-heading" className="text-2xl font-semibold">
         Who are you?
       </h2>
