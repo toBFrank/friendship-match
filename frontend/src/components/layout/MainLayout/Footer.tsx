@@ -143,6 +143,22 @@ export default function Footer() {
                   Privacy Policy
                 </Link>
               </li>
+              <li>
+                <Link
+                  to="/credits"
+                  id="footer-credits"
+                  style={{
+                    fontSize: "0.875rem",
+                    color: "#6b6b6b",
+                    textDecoration: "none",
+                    transition: "color 0.15s",
+                  }}
+                  onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "#000")}
+                  onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "#6b6b6b")}
+                >
+                  Credits
+                </Link>
+              </li>
             </ul>
           </nav>
         </div>

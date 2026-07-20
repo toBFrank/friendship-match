@@ -188,10 +188,7 @@ export default function LandingPage() {
           </div>
 
           <div className="hero-visual">
-            {/* TODO: Replace with image asset */}
-            <div className="placeholder-box">
-              Leaderboard Placeholder
-            </div>
+            
           </div>
         </div>
       </section>
@@ -234,9 +231,6 @@ export default function LandingPage() {
         <div className="features">
           <div className="section-container">
             <span className="section-label" aria-hidden="true">Features</span>
-            <h2 className="features-headline" id="features-heading">
-              Meet people you'd<br />actually get along with.
-            </h2>
 
             {/* Feature 1: Questionnaire */}
             <div className="feature-item">
@@ -249,10 +243,15 @@ export default function LandingPage() {
                 </p>
               </div>
               <div className="feature-visual" aria-label="Questionnaire walkthrough preview">
-                {/* TODO: Replace with gif/video */}
-                <div className="placeholder-box">
+                <img
+                  src="/public/images/feature_1_visual.png"
+                  alt="Feature 1 Visual"
+                  width={300}
+                  height={300}
+                  />
+                {/* <div className="placeholder-box">
                   Questionnaire Walkthrough Placeholder
-                </div>
+                </div> */}
               </div>
             </div>
 
@@ -267,10 +266,12 @@ export default function LandingPage() {
                 </p>
               </div>
               <div className="feature-visual" aria-label="New match card preview">
-                {/* TODO: Replace with gif/video */}
-                <div className="placeholder-box">
-                  New Match Card Placeholder
-                </div>
+                <img
+                  src="/public/images/feature_2_visual.png"
+                  alt="Feature 2 Visual"
+                  width={300}
+                  height={300}
+                  />
               </div>
             </div>
 
@@ -285,10 +286,12 @@ export default function LandingPage() {
                 </p>
               </div>
               <div className="feature-visual" aria-label="Friendship score animation preview">
-                {/* TODO: Replace with gif/video */}
-                <div className="placeholder-box">
-                  Friendship Score Placeholder
-                </div>
+                <img
+                  src="/public/images/feature_3_visual.png"
+                  alt="Feature 3 Visual"
+                  width={300}
+                  height={300}
+                  />
               </div>
             </div>
           </div>

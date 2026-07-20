@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router";
-import { QuestionnairePage, LandingPage, LegalPage } from "./pages";
+import { QuestionnairePage, LandingPage, LegalPage, CreditsPage } from "./pages";
 import { MainLayout } from "./components/layout";
 
 function App() {
@@ -16,6 +16,7 @@ function App() {
           {/* Legal */}
           <Route path="/terms"   element={<LegalPage type="terms" />} />
           <Route path="/privacy" element={<LegalPage type="privacy" />} />
+          <Route path="/credits" element={<CreditsPage />} />
         </Route>
       </Routes>
     </div>
