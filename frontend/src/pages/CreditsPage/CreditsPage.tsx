@@ -71,6 +71,7 @@ export default function CreditsPage() {
             <li><i>hobby-4691033 icon by Narakorn Chanchittakarn from <a href="https://thenounproject.com/icon/hobby-4691033/" target="_blank" rel="noopener noreferrer" style={{ color: "#000", textDecoration: "underline" }}>The Noun Project</a> CC BY 3.0</i></li>
             <li><i>event-2080496 icon by Alice Design from <a href="https://thenounproject.com/icon/event-2080496/" target="_blank" rel="noopener noreferrer" style={{ color: "#000", textDecoration: "underline" }}>The Noun Project</a> CC BY 3.0</i></li>
             <li><i>adventure-7873696 icon by Smashing Stocks from <a href="https://thenounproject.com/icon/adventure-7873696/" target="_blank" rel="noopener noreferrer" style={{ color: "#000", textDecoration: "underline" }}>The Noun Project</a> CC BY 3.0</i></li>
+            <li><i>instagram-7999670 icon by FAUZUL KABIR from <a href="https://thenounproject.com/icon/instagram-7999670/" target="_blank" rel="noopener noreferrer" style={{ color: "#000", textDecoration: "underline" }}>The Noun Project</a> CC BY 3.0</i></li>
           </ul>
         </section>
       </article>

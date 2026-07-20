@@ -54,112 +54,136 @@ export default function Footer() {
           </div>
 
           {/* Nav Links */}
-          <nav aria-label="Footer navigation">
-            <ul
-              style={{
-                listStyle: "none",
-                margin: 0,
-                padding: 0,
-                display: "flex",
-                flexWrap: "wrap",
-                alignItems: "center",
-                gap: "1.5rem",
-              }}
-            >
-              {/* Social */}
-              <li>
-                <a
-                  href="https://www.instagram.com/tobfrankwu"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  id="footer-instagram"
-                  style={{
-                    fontSize: "0.875rem",
-                    color: "#6b6b6b",
-                    textDecoration: "none",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "0.35rem",
-                    transition: "color 0.15s",
-                  }}
-                  onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "#000")}
-                  onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "#6b6b6b")}
-                >
-                  {/* Instagram icon */}
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-                    <circle cx="12" cy="12" r="4"/>
-                    <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
-                  </svg>
-                </a>
-              </li>
-              {/* Contact */}
-              <li>
-                <a
-                  href="mailto:bonilla.franco484@gmail.com"
-                  id="footer-email"
-                  style={{
-                    fontSize: "0.875rem",
-                    color: "#6b6b6b",
-                    textDecoration: "none",
-                    transition: "color 0.15s",
-                  }}
-                  onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "#000")}
-                  onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "#6b6b6b")}
-                >
-                  Contact
-                </a>
-              </li>
-              {/* Legal */}
-              <li>
-                <Link
-                  to="/terms"
-                  id="footer-terms"
-                  style={{
-                    fontSize: "0.875rem",
-                    color: "#6b6b6b",
-                    textDecoration: "none",
-                    transition: "color 0.15s",
-                  }}
-                  onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "#000")}
-                  onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "#6b6b6b")}
-                >
-                  Terms of Service
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/privacy"
-                  id="footer-privacy"
-                  style={{
-                    fontSize: "0.875rem",
-                    color: "#6b6b6b",
-                    textDecoration: "none",
-                    transition: "color 0.15s",
-                  }}
-                  onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "#000")}
-                  onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "#6b6b6b")}
-                >
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/credits"
-                  id="footer-credits"
-                  style={{
-                    fontSize: "0.875rem",
-                    color: "#6b6b6b",
-                    textDecoration: "none",
-                    transition: "color 0.15s",
-                  }}
-                  onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "#000")}
-                  onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "#6b6b6b")}
-                >
-                  Credits
-                </Link>
-              </li>
-            </ul>
+          <nav aria-label="Footer navigation" style={{ display: "flex", gap: "4rem", flexWrap: "wrap" }}>
+            {/* Socials / Contacts */}
+            <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+              <p style={{ fontSize: "0.75rem", fontWeight: 700, color: "#000", margin: 0, textTransform: "uppercase", letterSpacing: "0.05em" }}>
+                Connect
+              </p>
+              <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+                <li>
+                  <a
+                    href="https://www.instagram.com/tobfrankwu"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    id="footer-instagram"
+                    style={{
+                      fontSize: "0.875rem",
+                      color: "#6b6b6b",
+                      textDecoration: "none",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "0.35rem",
+                      transition: "color 0.15s",
+                    }}
+                    onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "#000")}
+                    onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "#6b6b6b")}
+                  >
+                    <img src="/icons/insta_logo.png" alt="" width="16" height="16" style={{ objectFit: "contain" }} />
+                    Instagram
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="mailto:bonilla.franco484@gmail.com"
+                    id="footer-email"
+                    style={{
+                      fontSize: "0.875rem",
+                      color: "#6b6b6b",
+                      textDecoration: "none",
+                      transition: "color 0.15s",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "0.35rem",
+                    }}
+                    onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "#000")}
+                    onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "#6b6b6b")}
+                  >
+                    <img src="/icons/email.png" alt="" width="16" height="16" style={{ objectFit: "contain" }} />
+                    Email
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://tobfrank.github.io/franco-bonilla-portfolio/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    id="footer-portfolio"
+                    style={{
+                      fontSize: "0.875rem",
+                      color: "#6b6b6b",
+                      textDecoration: "none",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "0.35rem",
+                      transition: "color 0.15s",
+                    }}
+                    onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "#000")}
+                    onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "#6b6b6b")}
+                  >
+                    <img src="/icons/franco_icon_no_bg.png" alt="" width="16" height="16" style={{ objectFit: "contain" }} />
+                    Portfolio
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Legal */}
+            <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+              <p style={{ fontSize: "0.75rem", fontWeight: 700, color: "#000", margin: 0, textTransform: "uppercase", letterSpacing: "0.05em" }}>
+                Legal
+              </p>
+              <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+                <li>
+                  <Link
+                    to="/terms"
+                    id="footer-terms"
+                    style={{
+                      fontSize: "0.875rem",
+                      color: "#6b6b6b",
+                      textDecoration: "none",
+                      transition: "color 0.15s",
+                    }}
+                    onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "#000")}
+                    onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "#6b6b6b")}
+                  >
+                    Terms of Service
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/privacy"
+                    id="footer-privacy"
+                    style={{
+                      fontSize: "0.875rem",
+                      color: "#6b6b6b",
+                      textDecoration: "none",
+                      transition: "color 0.15s",
+                    }}
+                    onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "#000")}
+                    onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "#6b6b6b")}
+                  >
+                    Privacy Policy
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/credits"
+                    id="footer-credits"
+                    style={{
+                      fontSize: "0.875rem",
+                      color: "#6b6b6b",
+                      textDecoration: "none",
+                      transition: "color 0.15s",
+                    }}
+                    onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "#000")}
+                    onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "#6b6b6b")}
+                  >
+                    Credits
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </nav>
         </div>
 
