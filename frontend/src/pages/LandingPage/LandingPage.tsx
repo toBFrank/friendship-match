@@ -201,7 +201,7 @@ export default function LandingPage() {
         <div className="value-prop">
           <span className="section-label" aria-hidden="true">Why Flocker</span>
           <p className="value-prop-text" id="value-prop-heading">
-            "Flocker matches you on<br />who you actually are."
+            Flocker matches you on<br />who you actually are.
           </p>
         </div>
       </section>
