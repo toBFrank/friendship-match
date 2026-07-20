@@ -57,10 +57,10 @@ export default function Footer() {
           <nav aria-label="Footer navigation" style={{ display: "flex", gap: "4rem", flexWrap: "wrap" }}>
             {/* Socials / Contacts */}
             <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-              <p style={{ fontSize: "0.75rem", fontWeight: 700, color: "#000", margin: 0, textTransform: "uppercase", letterSpacing: "0.05em" }}>
+              <p style={{ fontSize: "1rem", fontWeight: 700, color: "#000", margin: 0, textTransform: "uppercase" }}>
                 Connect
               </p>
-              <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+              <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: "1rem" }}>
                 <li>
                   <a
                     href="https://www.instagram.com/tobfrankwu"
@@ -68,18 +68,19 @@ export default function Footer() {
                     rel="noopener noreferrer"
                     id="footer-instagram"
                     style={{
-                      fontSize: "0.875rem",
+                      fontSize: "1rem",
                       color: "#6b6b6b",
                       textDecoration: "none",
                       display: "flex",
                       alignItems: "center",
-                      gap: "0.35rem",
-                      transition: "color 0.15s",
+                      gap: "1rem",
+                      minHeight: "24px",
+                      transition: "color 0.2s",
                     }}
                     onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "#000")}
                     onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "#6b6b6b")}
                   >
-                    <img src="/icons/insta_logo.png" alt="" width="16" height="16" style={{ objectFit: "contain" }} />
+                    <img src="/icons/insta_logo.png" alt="" width="24" height="24" style={{ objectFit: "contain" }} />
                     Instagram
                   </a>
                 </li>
@@ -88,18 +89,19 @@ export default function Footer() {
                     href="mailto:bonilla.franco484@gmail.com"
                     id="footer-email"
                     style={{
-                      fontSize: "0.875rem",
+                      fontSize: "1rem",
                       color: "#6b6b6b",
                       textDecoration: "none",
-                      transition: "color 0.15s",
                       display: "flex",
                       alignItems: "center",
-                      gap: "0.35rem",
+                      gap: "1rem",
+                      minHeight: "24px",
+                      transition: "color 0.2s",
                     }}
                     onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "#000")}
                     onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "#6b6b6b")}
                   >
-                    <img src="/icons/email.png" alt="" width="16" height="16" style={{ objectFit: "contain" }} />
+                    <img src="/icons/email.png" alt="" width="24" height="24" style={{ objectFit: "contain" }} />
                     Email
                   </a>
                 </li>
@@ -110,18 +112,19 @@ export default function Footer() {
                     rel="noopener noreferrer"
                     id="footer-portfolio"
                     style={{
-                      fontSize: "0.875rem",
+                      fontSize: "1rem",
                       color: "#6b6b6b",
                       textDecoration: "none",
                       display: "flex",
                       alignItems: "center",
-                      gap: "0.35rem",
-                      transition: "color 0.15s",
+                      gap: "1rem",
+                      minHeight: "24px",
+                      transition: "color 0.2s",
                     }}
                     onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "#000")}
                     onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "#6b6b6b")}
                   >
-                    <img src="/icons/franco_icon_no_bg.png" alt="" width="16" height="16" style={{ objectFit: "contain" }} />
+                    <img src="/icons/franco_icon_no_bg.png" alt="" width="24" height="24" style={{ objectFit: "contain" }} />
                     Portfolio
                   </a>
                 </li>
@@ -130,19 +133,22 @@ export default function Footer() {
 
             {/* Legal */}
             <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-              <p style={{ fontSize: "0.75rem", fontWeight: 700, color: "#000", margin: 0, textTransform: "uppercase", letterSpacing: "0.05em" }}>
+              <p style={{ fontSize: "1rem", fontWeight: 700, color: "#000", margin: 0, textTransform: "uppercase" }}>
                 Legal
               </p>
-              <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+              <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: "1rem" }}>
                 <li>
                   <Link
                     to="/terms"
                     id="footer-terms"
                     style={{
-                      fontSize: "0.875rem",
+                      fontSize: "1rem",
                       color: "#6b6b6b",
                       textDecoration: "none",
-                      transition: "color 0.15s",
+                      display: "flex",
+                      alignItems: "center",
+                      minHeight: "24px",
+                      transition: "color 0.2s",
                     }}
                     onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "#000")}
                     onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "#6b6b6b")}
@@ -155,10 +161,13 @@ export default function Footer() {
                     to="/privacy"
                     id="footer-privacy"
                     style={{
-                      fontSize: "0.875rem",
+                      fontSize: "1rem",
                       color: "#6b6b6b",
                       textDecoration: "none",
-                      transition: "color 0.15s",
+                      display: "flex",
+                      alignItems: "center",
+                      minHeight: "24px",
+                      transition: "color 0.2s",
                     }}
                     onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "#000")}
                     onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "#6b6b6b")}
@@ -171,10 +180,13 @@ export default function Footer() {
                     to="/credits"
                     id="footer-credits"
                     style={{
-                      fontSize: "0.875rem",
+                      fontSize: "1rem",
                       color: "#6b6b6b",
                       textDecoration: "none",
-                      transition: "color 0.15s",
+                      display: "flex",
+                      alignItems: "center",
+                      minHeight: "24px",
+                      transition: "color 0.2s",
                     }}
                     onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "#000")}
                     onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "#6b6b6b")}
@@ -188,8 +200,8 @@ export default function Footer() {
         </div>
 
         {/* Bottom: copyright */}
-        <div style={{ borderTop: "1px solid #e5e5e5", paddingTop: "1.5rem" }}>
-          <p style={{ fontSize: "0.8rem", color: "#9ca3af", margin: 0 }}>
+        <div style={{ borderTop: "1px solid #e5e5e5", paddingTop: "2rem" }}>
+          <p style={{ fontSize: "1rem", color: "#9ca3af", margin: 0 }}>
             © {year} Flocker. All rights reserved.
           </p>
         </div>
