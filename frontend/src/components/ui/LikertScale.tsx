@@ -38,7 +38,7 @@ export default function LikertScale({
 }: LikertScaleProps) {
   return (
     <fieldset id={id} className="mt-8 border-none p-0">
-      <legend className="text-lg italic mb-2">{question}</legend>
+      <legend className="text-lg font-bold italic mb-2">{question}</legend>
 
       <RadioGroup
         value={value != null ? String(value) : null}
@@ -52,7 +52,7 @@ export default function LikertScale({
           >
             <Radio.Root
               value={option.value}
-              className="flex size-10 shrink-0 items-center justify-center border rounded-full border-[var(--color-bg-inverted)] bg-white text-white data-checked:bg-[var(--color-bg-inverted)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-bg-inverted)]"
+              className="flex size-10 shrink-0 items-center justify-center border rounded-full border-[var(--color-bg-inverted) data-checked:bg-[var(--color-bg-inverted)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-bg-inverted)]"
             >
               <Radio.Indicator className="flex items-center justify-center data-unchecked:hidden before:size-2 before:rounded-full before:bg-current" />
             </Radio.Root>

@@ -25,7 +25,7 @@ export default function Header() {
 
         {/* CTA */}
         <Link to="/questionnaire" id="header-cta" className="header-cta">
-          Find Your Flock
+          Start Matching
           <span aria-hidden="true">→</span>
         </Link>
       </nav>

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router";
+import Header from "../../components/layout/MainLayout/Header";
 
 /* ─── Types ────────────────────────────────────────── */
 interface FaqItem {
@@ -175,6 +176,7 @@ function ContactForm() {
 export default function LandingPage() {
   return (
     <main id="main-content">
+      <Header />
       {/* ── 1. Hero ──────────────────────────────────── */}
       <section id="hero" aria-labelledby="hero-headline">
         <div className="hero">

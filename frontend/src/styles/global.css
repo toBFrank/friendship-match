@@ -32,39 +32,39 @@
 /* ─── CSS Variables & Dark Mode ───────────────────────── */
 :root {
   /* Light Mode (Default) */
-  --theme-primary: #ffffff;
-  --theme-secondary: #6b6b6b;
-  --theme-accent: #121212;
+  --theme-primary: #fae9d5;
+  --theme-secondary: #646464;
+  --theme-accent: #6ecff7;
 
-  --theme-bg-main: #ffffff;
+  --theme-bg-main: #fae9d5;
   --theme-bg-surface: #f5f5f5;
-  --theme-bg-inverted: #121212;
+  --theme-bg-inverted: #6ecff7;
 
   --theme-text-main: #121212;
-  --theme-text-muted: #6b6b6b;
-  --theme-text-inverted: #ffffff;
+  --theme-text-muted: #646464;
+  --theme-text-inverted: #fae9d5;
 
-  --theme-border: #e5e5e5;
-  --theme-border-strong: #121212;
+  --theme-border: #dcdcdc;
+  --theme-border-strong: #6ecff7;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     /* Dark Mode Overrides */
-    --theme-primary: #121212;
-    --theme-secondary: #a3a3a3;
-    --theme-accent: #ffffff;
+    --theme-primary: #6ecff7;
+    --theme-secondary: #6c6c6c;
+    --theme-accent: #fae9d5;
 
-    --theme-bg-main: #121212;
+    --theme-bg-main: #6ecff7;
     --theme-bg-surface: #1e1e1e;
-    --theme-bg-inverted: #ffffff;
+    --theme-bg-inverted: #fae9d5;
 
-    --theme-text-main: #ffffff;
-    --theme-text-muted: #a3a3a3;
+    --theme-text-main: #fae9d5;
+    --theme-text-muted: #6c6c6c;
     --theme-text-inverted: #121212;
 
     --theme-border: #333333;
-    --theme-border-strong: #ffffff;
+    --theme-border-strong: #fae9d5;
   }
 }
 

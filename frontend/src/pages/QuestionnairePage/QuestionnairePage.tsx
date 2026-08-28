@@ -33,7 +33,8 @@ export default function QuestionnairePage() {
   const [personalityAnswers, setPersonalityAnswers] = useState<
     PersonalityAnswer[]
   >([]);
-  const [personalityQuestionsLength, setPersonalityQuestionsLength] = useState<number>(0);
+  const [personalityQuestionsLength, setPersonalityQuestionsLength] =
+    useState<number>(0);
   const [academicData, setAcademicData] = useState<AcademicFormData>({
     universityId: null,
     degreeLevel: null,
@@ -55,24 +56,29 @@ export default function QuestionnairePage() {
     window.scrollTo(0, 0);
   }, [currentSection]);
 
-    useEffect(() => {
-      const fetchDomains = async () => {
-        try {
-          const data = await getDomains();
-          setValidDomains(data);
-        } catch {
-          setAccountErrors({ email: "Failed to load valid domains. Please refresh." });
-        }
-      };
-      fetchDomains();
-    }, []);
+  useEffect(() => {
+    const fetchDomains = async () => {
+      try {
+        const data = await getDomains();
+        setValidDomains(data);
+      } catch {
+        setAccountErrors({
+          email: "Failed to load valid domains. Please refresh.",
+        });
+      }
+    };
+    fetchDomains();
+  }, []);
 
   function isSectionValid(section: Section): boolean {
     switch (section) {
       case "interests":
         return interests.length >= 2 && interests.length <= 10;
       case "personality":
-        return personalityAnswers.length == personalityQuestionsLength && personalityQuestionsLength > 0;
+        return (
+          personalityAnswers.length == personalityQuestionsLength &&
+          personalityQuestionsLength > 0
+        );
       case "academic":
         // return !!academicData.programId && !!academicData.universityId;
         return true;
@@ -150,7 +156,11 @@ export default function QuestionnairePage() {
       <section aria-labelledby="section-questionnaire" className="mt-8">
         <form onSubmit={handleSubmit}>
           {renderSection()}
-
+          {!canAdvance && (
+            <p className="text-sm text-(--color-secondary) italic">
+              {SECTION_HINTS[SECTIONS[currentSection]]}
+            </p>
+          )}
           <div className="mt-8 flex justify-between">
             <button
               type="button"
@@ -163,12 +173,12 @@ export default function QuestionnairePage() {
 
             {!isLast ? (
               <div className="flex flex-col items-end gap-1">
-                {!canAdvance && (
-                  <p className="text-sm text-(--color-secondary)">
-                    {SECTION_HINTS[SECTIONS[currentSection]]}
-                  </p>
-                )}
-                <button type="button" className="disabled:opacity-50" onClick={handleNext} disabled={!canAdvance}>
+                <button
+                  type="button"
+                  className="disabled:opacity-50"
+                  onClick={handleNext}
+                  disabled={!canAdvance}
+                >
                   Next: {SECTION_LABELS[SECTIONS[currentSection + 1]]} →
                 </button>
               </div>

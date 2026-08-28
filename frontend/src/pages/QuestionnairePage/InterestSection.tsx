@@ -69,11 +69,11 @@ export default function InterestSection({
                     disabled={selected.length >= MAX_INTERESTS && !isSelected}
                     onClick={() => toggle(interest.id)}
                     className={[
-                      "border border-[var(--color-bg-inverted)] m-2 px-4 py-2 text-sm cursor-pointer select-none",
-                      "focus-visible:outline-2 focus-visible:-outline-offset-1 focus-visible:outline-[var(--color-bg-inverted)] disabled:opacity-50",
+                      "border border-[var(--color-text-main)] m-2 px-4 py-2 text-sm cursor-pointer select-none",
+                      "focus-visible:outline-2 focus-visible:-outline-offset-1 focus-visible:outline-[var(--color-text-main)] disabled:opacity-50",
                       isSelected
-                        ? "bg-[var(--color-bg-inverted)] text-[var(--color-bg-main)]"
-                        : "bg-[var(--color-bg-main)] text-[var(--color-bg-inverted)] hover:not-data-disabled:bg-gray-100",
+                        ? "bg-[var(--color-text-main)] text-[var(--color-bg-main)]"
+                        : "bg-[var(--color-bg-main)] text-[var(--color-text-main)] hover:not-data-disabled:bg-gray-100",
                     ].join(" ")}
                   >
                     {interest.name}
