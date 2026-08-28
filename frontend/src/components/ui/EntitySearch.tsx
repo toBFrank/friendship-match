@@ -102,20 +102,20 @@ export default function EntitySearch({
             }}
             onFocus={() => query.trim().length > 0 && setOpen(true)}
             placeholder={placeholder}
-            className="w-full border border-black px-3 py-2 text-sm focus-visible:outline-black focus-visible:outline-0"
+            className="w-full border border-[var(--color-bg-inverted)] px-3 py-2 text-sm focus-visible:outline-[var(--color-bg-inverted)] focus-visible:outline-0"
           />
 
           {open && suggestions.length > 0 && (
             <ul
               ref={listRef}
-              className="absolute left-0 right-0 top-full border border-t border-black bg-white z-50 no-scrollbar"
+              className="absolute left-0 right-0 top-full border border-t border-[var(--color-bg-inverted)] bg-white z-50 no-scrollbar"
             >
               {suggestions.map((item) => (
                 <li key={item.id}>
                   <button
                     type="button"
                     onClick={() => handleSelect(item)}
-                    className="w-full text-left px-3 py-2 text-sm hover:bg-black hover:text-white cursor-pointer"
+                    className="w-full text-left px-3 py-2 text-sm hover:bg-[var(--color-bg-inverted)] hover:text-[var(--color-bg-main)] cursor-pointer"
                   >
                     <span className="font-medium">{item.primary}</span>
                     {item.secondary && (
@@ -128,7 +128,7 @@ export default function EntitySearch({
           )}
 
           {noMatch && (
-            <div className="absolute left-0 right-0 top-full border border-t-0 border-black bg-white z-50 px-3 py-2 text-sm">
+            <div className="absolute left-0 right-0 top-full border border-t-0 border-[var(--color-bg-inverted)] bg-white z-50 px-3 py-2 text-sm">
               No matching {suggestType}s found.
             </div>
           )}
@@ -141,7 +141,7 @@ export default function EntitySearch({
           {selectedItems.map((item) => (
             <li
               key={item.id}
-              className="flex items-center justify-between px-3 py-2 text-sm border border-black"
+              className="flex items-center justify-between px-3 py-2 text-sm border border-[var(--color-bg-inverted)]"
             >
               <span>
                 <span className="font-medium">{item.primary}</span>
@@ -169,7 +169,7 @@ export default function EntitySearch({
       )}
 
       {/* Suggest */}
-      {!suggesting && !submitted && (
+      {/* {!suggesting && !submitted && (
         <button
           type="button"
           onClick={() => setSuggesting(true)}
@@ -190,7 +190,7 @@ export default function EntitySearch({
         <p className="mt-3 text-sm">
           Thanks! "{submitted}" has been submitted for review.
         </p>
-      )}
+      )} */}
     </div>
   );
 }

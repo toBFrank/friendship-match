@@ -1,111 +1,34 @@
 import type { PersonalityQuestion } from "../types/personality";
 
+// 20 OCEAN-scored questions (4 per trait).
+// ocean: O=Openness, C=Conscientiousness, E=Extraversion, A=Agreeableness, N=Neuroticism
+// reversed: true means a high rating signals a LOW score for that trait.
+
 const sample_personality: PersonalityQuestion[] = [
-  // Friendship
-  {
-    id: 1,
-    category: "Friendship",
-    text: "A good friend always tells you the truth, even when it's uncomfortable.",
-  },
-  {
-    id: 2,
-    category: "Friendship",
-    text: "Being there during hard times matters more than celebrating good ones.",
-  },
-  {
-    id: 3,
-    category: "Friendship",
-    text: "I prefer a few deep friendships over many casual ones.",
-  },
-  {
-    id: 4,
-    category: "Friendship",
-    text: "I expect friends to check in regularly without being asked.",
-  },
+  // ── Openness (O) ─────────────────────────────────────────────────────────────
+  { id: 1,  ocean: "O",           text: "I enjoy exploring new ideas, even ones that challenge my existing beliefs." },
+  { id: 2,  ocean: "O",           text: "I enjoy trying out new cuisines and regularly eat food from different cultures." },
+  { id: 3,  ocean: "O",           text: "I prefer routines over variety in my day-to-day life.", reversed: true },
 
-  // Social
-  {
-    id: 5,
-    category: "Social",
-    text: "I feel energized after spending time in large groups.",
-  },
-  {
-    id: 6,
-    category: "Social",
-    text: "I enjoy meeting new people in unfamiliar settings.",
-  },
-  {
-    id: 7,
-    category: "Social",
-    text: "I often take the lead in social situations.",
-  },
-  {
-    id: 8,
-    category: "Social",
-    text: "I need alone time to recharge after socializing.",
-  },
+  // ── Conscientiousness (C) ─────────────────────────────────────────────────────
+  { id: 4,  ocean: "C",           text: "I keep my space and schedule organized." },
+  { id: 5,  ocean: "C",           text: "I follow through on commitments, even when it is inconvenient." },
+  { id: 6,  ocean: "C",           text: "I tend to act on impulse without fully thinking things through.", reversed: true },
 
-  // Values
-  {
-    id: 9,
-    category: "Values",
-    text: "Rules and structure are important for a functioning community.",
-  },
-  {
-    id: 10,
-    category: "Values",
-    text: "Individual freedom should come before collective expectations.",
-  },
-  {
-    id: 11,
-    category: "Values",
-    text: "Equality of outcome matters as much as equality of opportunity.",
-  },
-  {
-    id: 12,
-    category: "Values",
-    text: "Tradition and cultural heritage deserve respect and preservation.",
-  },
+  // ── Extraversion (E) ──────────────────────────────────────────────────────────
+  { id: 7,  ocean: "E",           text: "I feel energized after spending time in large groups." },
+  { id: 8,  ocean: "E",           text: "I need plenty of alone time to feel recharged.", reversed: true },
+  { id: 9,  ocean: "E",           text: "I strike up conversations with strangers easily." },
 
-  // Environment
-  {
-    id: 13,
-    category: "Environment",
-    text: "I actively make lifestyle choices to reduce my environmental impact.",
-  },
-  {
-    id: 14,
-    category: "Environment",
-    text: "Climate change should be a top priority for society.",
-  },
-  {
-    id: 15,
-    category: "Environment",
-    text: "I would pay more for environmentally friendly products.",
-  },
+  // ── Agreeableness (A) ─────────────────────────────────────────────────────────
+  { id: 10, ocean: "A",           text: "I tend to trust that most people have good intentions." },
+  { id: 11, ocean: "A",           text: "I sometimes put my own needs before others without guilt.", reversed: true },
+  { id: 12, ocean: "A",           text: "I go out of my way to make sure others feel comfortable." },
 
-  // OCEAN
-  {
-    id: 16,
-    category: "OCEAN",
-    text: "I enjoy trying new experiences and exploring new ideas.",
-  },
-  {
-    id: 17,
-    category: "OCEAN",
-    text: "I like to keep my space and schedule organized.",
-  },
-  {
-    id: 18,
-    category: "OCEAN",
-    text: "I find it easy to empathize with people around me.",
-  },
-  {
-    id: 19,
-    category: "OCEAN",
-    text: "I stay calm and composed under pressure.",
-  },
-  { id: 20, category: "OCEAN", text: "I enjoy being the center of attention." },
+  // ── Neuroticism (N) ───────────────────────────────────────────────────────────
+  { id: 13, ocean: "N",           text: "I often worry about things that might go wrong." },
+  { id: 14, ocean: "N",           text: "My mood can shift significantly depending on small events." },
+  { id: 15, ocean: "N",           text: "I stay calm and composed under pressure.", reversed: true },
 ];
 
 export default sample_personality;

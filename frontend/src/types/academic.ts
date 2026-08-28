@@ -1,5 +1,8 @@
 export type DegreeLevel = "Undergraduate" | "Graduate";
 
+export const DEGREE_LEVELS: DegreeLevel[] = ["Undergraduate", "Graduate"];
+
+
 export type AcademicYear =
   | "1st Year"
   | "2nd Year"

@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import type { Interest } from "../../types/interest";
+import { type Interest, INTEREST_CATEGORIES } from "../../types/interest";
 import { getInterests } from "../../api/interestsService";
 import { Button } from "@base-ui/react/button";
 
-type Category = Interest["category"];
-const CATEGORIES: Category[] = ["Physical", "Mental", "Creative", "Social"];
+
+const MAX_INTERESTS = 10;
 
 interface InterestSectionProps {
   selected: number[];
@@ -34,6 +34,7 @@ export default function InterestSection({
   }, []);
 
   function toggle(id: number) {
+    // if (selected.length >= 10 && !selected.includes(id)) return;
     onChange(
       selected.includes(id)
         ? selected.filter((i) => i !== id)
@@ -44,18 +45,18 @@ export default function InterestSection({
   if (loading) return <p>Loading interests...</p>;
   if (error) return <p>{error}</p>;
 
-  const byCategory = (category: Category) =>
+  const byCategory = (category: Interest["category"]) =>
     interests.filter((i) => i.category === category);
 
   return (
-    <section aria-labelledby="interests-heading">
+    <section aria-labelledby="interests-heading" className="animate-appear">
       <h2 id="interests-heading" className="text-2xl font-semibold">
         What are your interests?
       </h2>
-      <p>Select everything that applies to you.</p>
+      <p>Select 2 to 10 of your strongest interests.</p>
 
       <div className="mt-4">
-        {CATEGORIES.map((category) => (
+        {INTEREST_CATEGORIES.map((category) => (
           <div key={category} className="mt-8">
             <h3 className="text-xl font-medium">{category}</h3>
             <div role="group" aria-label={`${category} interests`}>
@@ -65,13 +66,14 @@ export default function InterestSection({
                   <Button
                     key={interest.id}
                     aria-pressed={isSelected}
+                    disabled={selected.length >= MAX_INTERESTS && !isSelected}
                     onClick={() => toggle(interest.id)}
                     className={[
-                      "border border-black m-2 px-4 py-2 text-sm cursor-pointer select-none",
-                      "focus-visible:outline-2 focus-visible:-outline-offset-1 focus-visible:outline-black",
+                      "border border-[var(--color-bg-inverted)] m-2 px-4 py-2 text-sm cursor-pointer select-none",
+                      "focus-visible:outline-2 focus-visible:-outline-offset-1 focus-visible:outline-[var(--color-bg-inverted)] disabled:opacity-50",
                       isSelected
-                        ? "bg-black text-white"
-                        : "bg-white text-black hover:not-data-disabled:bg-gray-100",
+                        ? "bg-[var(--color-bg-inverted)] text-[var(--color-bg-main)]"
+                        : "bg-[var(--color-bg-main)] text-[var(--color-bg-inverted)] hover:not-data-disabled:bg-gray-100",
                     ].join(" ")}
                   >
                     {interest.name}

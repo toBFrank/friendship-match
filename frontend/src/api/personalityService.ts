@@ -8,7 +8,7 @@ export async function getPersonalityQuestions(): Promise<
   PersonalityQuestion[]
 > {
   if (USE_SAMPLE_DATA) {
-    // await new Promise((resolve) => setTimeout(resolve, 300));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     // throw new Error("Simulated API error");
     return sample_personality;
   }

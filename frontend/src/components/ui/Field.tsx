@@ -44,8 +44,8 @@ export default function Field({
         aria-invalid={!!error}
         className={[
           "w-full border px-3 py-2 text-sm",
-          "focus-visible:outline-2 focus-visible:-outline-offset-1 focus-visible:outline-black",
-          error ? "border-black" : "border-black",
+          "focus-visible:outline-2 focus-visible:-outline-offset-1 focus-visible:outline-[var(--color-bg-inverted)]",
+          error ? "border-[var(--color-bg-inverted)]" : "border-[var(--color-bg-inverted)]",
         ].join(" ")}
       />
       {error && (

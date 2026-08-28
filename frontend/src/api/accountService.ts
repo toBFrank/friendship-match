@@ -5,7 +5,7 @@ const USE_SAMPLE_DATA = true;
 
 export async function getDomains(): Promise<string[]> {
   if (USE_SAMPLE_DATA) {
-    await new Promise((resolve) => setTimeout(resolve, 300));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     return sample_domains;
   }
   return apiRequest<string[]>("/domains");

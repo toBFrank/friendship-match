@@ -6,14 +6,8 @@ Meeting people in university is harder than it should be. My Flock is a study-bu
 
 ## Core User Flow
 
-1. User lands on the app
-2. Chooses one of three paths:
-   - **Short Test** (primary path)
-   - **Classes Test** (class-based matching)
-   - **Detailed Test** (optional, deeper matching)
-3. Users are notified via email when matches are ready
-4. Matches are viewable in-app
-4. Users can message matches in-app
+**MVP Flow**
+START --> (landing) User sees club intro and matching details/instructions, clicks "Get Matched" --> (questions/interests) User selects all interests and hobbies, clicks "Next" --> (questions/personality) User answers 5 OCEAN likert scale questions, clicks "Next" --> (questions/contact-info) User fills out name + email + instagram, clicks "Submit" --> (questions/submitted) User sees "Thank you!" and countdown until matches are released --> END 
 
 ---
 

@@ -1,0 +1,92 @@
+/* ─── Header.css ──────────────────────────────────────────────── */
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  width: 100%;
+  background-color: var(--color-bg-main);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+/* Scrolled State for the Header Container */
+.header[data-scrolled="true"] {
+  background-color: var(--color-bg-inverted);
+  border-bottom-color: color-mix(in srgb, var(--color-text-inverted) 15%, transparent);
+}
+
+.header-nav {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: clamp(1.5rem, 5vw, 2rem);
+  height: 72px; /* Fixed height aligns with the scroll-margin-top in global CSS */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ─── Logo ────────────────────────────────────────────────────── */
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: var(--color-text-main);
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.header-logo:hover,
+.header-logo:focus-visible {
+  opacity: 0.8;
+}
+
+.header-logo-text {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  font-family: inherit;
+}
+
+/* Scrolled State for Logo */
+.header[data-scrolled="true"] .header-logo {
+  color: var(--color-text-inverted);
+}
+
+/* ─── Call To Action Button ───────────────────────────────────── */
+.header-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background-color: var(--color-bg-inverted);
+  color: var(--color-text-inverted);
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-decoration: none;
+  font-family: inherit;
+  border: 1px solid transparent;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.15s ease, opacity 0.2s ease;
+}
+
+.header-cta:hover,
+.header-cta:focus-visible {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.header-cta:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Scrolled State for CTA (Inverts to Main colors) */
+.header[data-scrolled="true"] .header-cta {
+  background-color: var(--color-bg-main);
+  color: var(--color-text-main);
+}
+
+/* Uses color-mix to create a slight darkening effect dynamically on hover */
+.header[data-scrolled="true"] .header-cta:hover,
+.header[data-scrolled="true"] .header-cta:focus-visible {
+  background-color: color-mix(in srgb, var(--color-bg-main) 90%, var(--color-text-main));
+}

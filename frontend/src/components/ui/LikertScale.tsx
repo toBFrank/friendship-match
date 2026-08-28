@@ -52,13 +52,7 @@ export default function LikertScale({
           >
             <Radio.Root
               value={option.value}
-              className="flex size-10 shrink-0 items-center justify-center border rounded-full border-black bg-white text-white data-checked:bg-black focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-              onClick={() => {
-                // Clicking the already-selected option deselects it
-                if (value === Number(option.value)) {
-                  onChange(null);
-                }
-              }}
+              className="flex size-10 shrink-0 items-center justify-center border rounded-full border-[var(--color-bg-inverted)] bg-white text-white data-checked:bg-[var(--color-bg-inverted)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-bg-inverted)]"
             >
               <Radio.Indicator className="flex items-center justify-center data-unchecked:hidden before:size-2 before:rounded-full before:bg-current" />
             </Radio.Root>
