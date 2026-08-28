@@ -1,0 +1,439 @@
+/* ─── LandingPage.css ─────────────────────────────────────────────── */
+
+/* ─── Shared Section Layouts ────────────────────────────── */
+/* Replaces all the inconsistent 5rem, 6rem, 7rem paddings */
+.section-container {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: clamp(1.5rem, 5vw, 2rem);
+}
+
+.section-block {
+  padding-block: clamp(4rem, 8vw, 7rem);
+  border-top: 1px solid var(--color-border);
+}
+
+.section-label {
+  display: inline-block;
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--color-accent);
+  padding-bottom: 0.75rem;
+}
+
+/* ─── Hero ──────────────────────────────────────────────── */
+.hero {
+  min-height: calc(100svh - 72px); /* Accounts for mobile browser UI */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-block: clamp(4rem, 10vh, 8rem);
+  padding-inline: 1.5rem;
+  text-align: center;
+  gap: 2rem;
+  border-top: none;
+}
+
+.hero-headline {
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 900;
+  line-height: 1.1;
+  margin: 0;
+  color: var(--color-text-main);
+}
+
+.hero-sub {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  color: var(--color-text-muted);
+  max-width: 60ch;
+  margin-inline: auto;
+  line-height: 1.6;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  width: 100%;
+}
+
+/* ─── Hero Social Proof (New) ───────────────────────────── */
+.hero-social-proof {
+  /* display: none; ENABLE: remove this when signups >= 100 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  font-size: 0.875rem; /* Much smaller and unobtrusive */
+  color: var(--color-text-muted);
+  margin-top: -1rem; /* Pulls it slightly closer to the CTA button */
+}
+
+.hero-social-count {
+  font-weight: 700;
+  color: var(
+    --color-text-main
+  ); /* Makes the number pop slightly against the muted text */
+}
+
+/* ─── Buttons ───────────────────────────────────────────── */
+.btn-primary,
+.btn-secondary,
+.btn-primary-inverted {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.15s ease,
+    opacity 0.2s ease;
+}
+
+.btn-primary:hover,
+.btn-primary:focus-visible,
+.btn-secondary:hover,
+.btn-secondary:focus-visible,
+.btn-primary-inverted:hover,
+.btn-primary-inverted:focus-visible {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.btn-primary:active,
+.btn-secondary:active,
+.btn-primary-inverted:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.btn-primary {
+  background: var(--color-bg-inverted);
+  color: var(--color-text-inverted);
+  border: 1px solid var(--color-bg-inverted);
+}
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--color-text-main);
+  border: 2px solid var(--color-border-strong);
+}
+.btn-secondary:hover {
+  background: var(--color-bg-surface);
+}
+
+/* CTA Specific Button */
+.btn-primary-inverted {
+  background: var(--color-bg-main);
+  color: var(--color-text-main);
+  border: 1px solid var(--color-bg-main);
+}
+.btn-primary-inverted:hover {
+  opacity: 0.9;
+}
+
+/* ─── Visual Placeholders ───────────────────────────────── */
+.hero-visual {
+  width: 100%;
+  max-width: 400px;
+  margin-inline: auto;
+}
+
+.placeholder-box {
+  width: 100%;
+  min-height: 300px;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  font-size: 0.875rem;
+}
+
+/* ─── Value Proposition ─────────────────────────────────── */
+.value-prop {
+  text-align: center;
+}
+
+.value-prop-text {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.2;
+  max-width: 25ch;
+  margin-inline: auto;
+}
+
+/* ─── Feature Highlights ────────────────────────────────── */
+.features-headline {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  margin-block-end: clamp(3rem, 6vw, 5rem);
+  line-height: 1.1;
+}
+
+.feature-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: clamp(4rem, 8vw, 6rem);
+  padding-bottom: clamp(4rem, 8vw, 6rem);
+  border-bottom: 1px solid var(--color-border);
+}
+.feature-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.feature-number {
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.feature-content h3 {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 800;
+  margin-block-end: 1rem;
+  line-height: 1.2;
+}
+
+.feature-content p {
+  font-size: 1.125rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  margin: 0;
+  max-width: 45ch;
+}
+
+.feature-visual {
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ─── CTA Section ───────────────────────────────────────── */
+.cta-section {
+  text-align: center;
+  background: var(--color-bg-inverted);
+  color: var(--color-text-inverted);
+  border-top: none;
+}
+
+.cta-section h2 {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 900;
+  margin-block-end: 1.5rem;
+  line-height: 1.1;
+  color: var(--color-text-inverted);
+}
+
+.cta-section p {
+  font-size: clamp(1.125rem, 2vw, 1.25rem);
+  color: var(--color-text-muted); /* Overrides nicely in dark mode */
+  margin: 0 auto 2.5rem;
+  max-width: 50ch;
+  line-height: 1.6;
+}
+
+/* ─── FAQ ───────────────────────────────────────────────── */
+.faq-section h2 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  margin-block-end: 3rem;
+}
+
+.faq-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  max-width: 768px;
+}
+
+.faq-item {
+  border-top: 1px solid var(--color-border);
+}
+.faq-item:last-child {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.faq-question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding-block: 1.5rem;
+  text-align: left;
+  font-size: 1.125rem;
+  font-weight: 700;
+  font-family: inherit;
+  color: var(--color-text-main);
+  cursor: pointer;
+  gap: 1rem;
+  transition: color 0.2s ease;
+}
+.faq-question:hover {
+  color: var(--color-text-muted);
+}
+
+.faq-chevron {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  transition: transform 0.3s ease;
+  color: var(--color-text-muted);
+}
+.faq-item.open .faq-chevron {
+  transform: rotate(180deg);
+  color: var(--color-text-main);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition:
+    max-height 0.4s ease,
+    padding 0.2s ease;
+}
+.faq-item.open .faq-answer {
+  max-height: 500px;
+}
+
+.faq-answer p {
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  margin: 0;
+  padding-bottom: 1.5rem;
+}
+
+/* ─── Contact ───────────────────────────────────────────── */
+.contact-section {
+  background: var(--color-bg-surface);
+}
+
+.contact-section h2 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  margin-block-end: 1rem;
+}
+
+.contact-section p {
+  color: var(--color-text-muted);
+  margin-block-end: 3rem;
+  font-size: 1.125rem;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 600px;
+}
+
+.contact-row {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.contact-row .form-group {
+  flex: 1;
+  min-width: min(100%, 250px);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-label {
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-text-main);
+  letter-spacing: 0.05em;
+}
+
+.form-input,
+.form-textarea {
+  padding: 1rem;
+  border: 1px solid var(--color-border);
+  font-size: 1rem;
+  font-family: inherit;
+  color: var(--color-text-main);
+  background: var(--color-bg-main);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+  outline: none;
+  resize: vertical;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  border-color: var(--color-accent);
+  /* Uses a subtle ring mapped to your accent color instead of hardcoded black */
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 20%, transparent);
+}
+
+.form-textarea {
+  min-height: 150px;
+}
+
+.contact-submit {
+  align-self: flex-start;
+  margin-top: 1rem;
+}
+
+.form-success {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--color-text-main);
+  font-weight: 600;
+  font-size: 1rem;
+  padding-block: 1rem;
+}
+
+/* ─── Responsive Adjustments ────────────────────────────── */
+@media (min-width: 768px) {
+  .feature-item {
+    flex-direction: row;
+    align-items: center;
+    gap: clamp(2rem, 6vw, 5rem);
+  }
+  .feature-item.reverse {
+    flex-direction: row-reverse;
+  }
+  .feature-content,
+  .feature-visual {
+    flex: 1;
+  }
+}

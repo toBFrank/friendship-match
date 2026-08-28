@@ -1,72 +1,176 @@
+/* @import "tailwindcss"; */ /* Uncomment if using Tailwind v4 base import */
+
+/* ─── Tailwind Theme Configuration ────────────────────── */
 @theme {
   /* Typography */
-  /* Font */
-  --font-sans: "Geist Mono", system-ui, -apple-system, sans-serif;
-  /* Size
-   * H0 text-4xl font-extrabold  (hero headline)
-   * H1 text-3xl font-bold
-   * H2 text-2xl font-semibold
-   * H3 text-xl font-medium
-   * H4 text-lg font-medium
-  */
+  --font-sans: "Josefin Sans", system-ui, -apple-system, sans-serif;
 
-  /* ─── Color Palette ─────────────────────────────
-   * [var(--color-bg-inverted)] & White / High-contrast
+  /* Color Palette
    * Primary 60%: Large backgrounds, main headers, primary navigation bars
    * Secondary 30%: Secondary elements, subheadings, supporting text
    * Accent 10%: CTAs, FABs, highlighted links, badges
-   * ──────────────────────────────────────────────── */
-  --color-primary: #ffffff;
-  --color-secondary: #6b6b6b;
-  --color-accent: #121212;
+   */
+  --color-primary: var(--theme-primary);
+  --color-secondary: var(--theme-secondary);
+  --color-accent: var(--theme-accent);
 
   /* Surface */
-  --color-bg-main: #ffffff;
-  --color-bg-surface: #f5f5f5;
-  --color-bg-inverted: #121212;
+  --color-bg-main: var(--theme-bg-main);
+  --color-bg-surface: var(--theme-bg-surface);
+  --color-bg-inverted: var(--theme-bg-inverted);
 
   /* Text */
-  --color-text-main: #121212;
-  --color-text-muted: #6b6b6b;
-  --color-text-inverted: #ffffff;
+  --color-text-main: var(--theme-text-main);
+  --color-text-muted: var(--theme-text-muted);
+  --color-text-inverted: var(--theme-text-inverted);
 
   /* Border */
-  --color-border: #e5e5e5;
-  --color-border-strong: #121212;
+  --color-border: var(--theme-border);
+  --color-border-strong: var(--theme-border-strong);
+}
+
+/* ─── CSS Variables & Dark Mode ───────────────────────── */
+:root {
+  /* Light Mode (Default) */
+  --theme-primary: #ffffff;
+  --theme-secondary: #6b6b6b;
+  --theme-accent: #121212;
+
+  --theme-bg-main: #ffffff;
+  --theme-bg-surface: #f5f5f5;
+  --theme-bg-inverted: #121212;
+
+  --theme-text-main: #121212;
+  --theme-text-muted: #6b6b6b;
+  --theme-text-inverted: #ffffff;
+
+  --theme-border: #e5e5e5;
+  --theme-border-strong: #121212;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Dark Mode Overrides */
+    --theme-primary: #121212;
+    --theme-secondary: #a3a3a3;
+    --theme-accent: #ffffff;
+
+    --theme-bg-main: #121212;
+    --theme-bg-surface: #1e1e1e;
+    --theme-bg-inverted: #ffffff;
+
+    --theme-text-main: #ffffff;
+    --theme-text-muted: #a3a3a3;
+    --theme-text-inverted: #121212;
+
+    --theme-border: #333333;
+    --theme-border-strong: #ffffff;
+  }
 }
 
 /* ─── Utility Classes ─────────────────────────────────── */
 @layer utilities {
-  .no-scrollbar::-webkit-scrollbar { display: none; }
-  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 
-  .text-balance { text-wrap: balance; }
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  /* Safe area padding for mobile notches */
+  .safe-pt {
+    padding-top: env(safe-area-inset-top);
+  }
+  .safe-pb {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  .safe-pl {
+    padding-left: env(safe-area-inset-left);
+  }
+  .safe-pr {
+    padding-right: env(safe-area-inset-right);
+  }
 }
 
 @utility animate-appear {
   @apply animate-in fade-in slide-in-from-bottom-2 duration-800;
 }
 
-/* ─── Base ────────────────────────────────────────────── */
-html {
-  scroll-behavior: smooth;
-}
+/* ─── Base Resets & Element Styles ────────────────────── */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Prevent text size adjustment on orientation change (iOS) */
+    -webkit-text-size-adjust: 100%;
+    /* App-like overscroll behavior to prevent pull-to-refresh bounce if needed */
+    overscroll-behavior-y: none;
+  }
 
-body {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  position: relative;
-  overflow-x: hidden;
-  background-color: var(--color-bg-main);
-  color: var(--color-text-main);
-}
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    position: relative;
+    overflow-x: hidden;
+    background-color: var(--color-bg-main);
+    color: var(--color-text-main);
+    font-family: var(--font-sans);
 
-.root {
-  isolation: isolate;
-}
+    /* Remove tap highlight on mobile for custom UI elements */
+    -webkit-tap-highlight-color: transparent;
+  }
 
-/* ─── Section scroll anchoring ────────────────────────── */
-/*make all sections animate-appear*/
-section[id] {
-  scroll-margin-top: 72px; /* header height */
+  /* Typography based on your comments */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-balance;
+  }
+
+  /* Prevent iOS zoom on inputs if font-size < 16px */
+  input,
+  textarea,
+  select {
+    font-size: max(16px, 1rem);
+  }
+
+  .root {
+    isolation: isolate;
+  }
+
+  /* ─── Accessibility ───────────────────────────────────── */
+  /* Remove animations for users who prefer reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* Improve focus states for keyboard users */
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  /* ─── Section Scroll Anchoring ────────────────────────── */
+  section[id] {
+    scroll-margin-top: 72px; /* Fixed header height */
+  }
 }

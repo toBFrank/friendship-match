@@ -1,0 +1,143 @@
+/* ─── Footer.css ────────────────────────────────────────── */
+
+.footer {
+  width: 100%;
+  background-color: var(--color-bg-inverted);
+  border-top: 1px solid var(--color-bg-inverted);
+  padding-block: clamp(3rem, 6vw, 4rem) 2rem;
+  padding-inline: clamp(1.5rem, 5vw, 2rem);
+}
+
+.footer-container {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2rem, 5vw, 3rem);
+}
+
+/* ─── Top Row ───────────────────────────────────────────── */
+.footer-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 3rem;
+}
+
+/* ─── Brand ─────────────────────────────────────────────── */
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer-brand-link {
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: var(--color-text-inverted);
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.footer-brand-link:hover {
+  opacity: 0.8;
+}
+
+.footer-brand-desc {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+/* ─── Navigation ────────────────────────────────────────── */
+.footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(3rem, 8vw, 5rem);
+}
+
+.footer-nav-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.footer-nav-title {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-text-inverted);
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.footer-nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.footer-nav-link {
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 24px;
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.footer-nav-link:hover {
+  color: var(--color-text-inverted);
+  transform: translateX(4px); /* Subtle interaction feedback */
+}
+
+/* ─── Icons ─────────────────────────────────────────────── */
+.footer-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  /* Assuming base icons are black, this makes them white on the dark inverted footer */
+  filter: invert(1);
+}
+
+/* If your global dark mode makes --color-bg-inverted white, 
+   we need the icons to stay black */
+@media (prefers-color-scheme: dark) {
+  .footer-icon {
+    filter: invert(0);
+  }
+}
+
+/* Specific override for the portfolio icon since it doesn't need inversion in your original code */
+.footer-icon.no-invert {
+  filter: none;
+}
+
+/* ─── Bottom / Copyright ────────────────────────────────── */
+.footer-bottom {
+  /* Using color-mix to create a subtle border based on the inverted text color */
+  border-top: 1px solid
+    color-mix(in srgb, var(--color-text-inverted) 15%, transparent);
+  padding-block-start: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-copyright {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  margin: 0;
+}
