@@ -92,7 +92,7 @@ export default function QuestionnairePage() {
     if (!isLast && canAdvance) setCurrentSection((prev) => prev + 1);
   }
 
-  function handleSubmit(e: SubmitEvent) {
+  function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
     const errors = validateAccount(accountData);
     if (Object.keys(errors).length > 0) {

@@ -30,7 +30,7 @@ export async function getCourses(programId: number): Promise<Course[]> {
 
 export async function getAllCourses(): Promise<Course[]> {
   if (USE_SAMPLE_DATA) {
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 300));
     return sample_courses;
   }
   return apiRequest<Course[]>("/courses");

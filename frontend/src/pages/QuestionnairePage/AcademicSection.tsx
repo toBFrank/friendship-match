@@ -107,7 +107,11 @@ export default function AcademicSection({
   if (error) return <p role="alert">{error}</p>;
 
   return (
+<<<<<<< HEAD
     <section aria-labelledby="academic-heading" className="animate-appear">
+=======
+    <section aria-labelledby="academic-heading">
+>>>>>>> main
       <h2 id="academic-heading" className="text-2xl font-semibold">
         What is your academic background?
       </h2>
@@ -115,7 +119,11 @@ export default function AcademicSection({
 
       <div className="mt-6 flex flex-col gap-6">
         {/* University */}
+<<<<<<< HEAD
         <fieldset className="border-none p-0 animate-appear">
+=======
+        <fieldset className="border-none p-0">
+>>>>>>> main
           <legend className="text-sm mb-2">University</legend>
           <EntitySearch
             items={universityItems}
@@ -132,7 +140,11 @@ export default function AcademicSection({
 
         {/* Degree Level */}
         {data.universityId && (
+<<<<<<< HEAD
           <fieldset className="border-none p-0 animate-appear">
+=======
+          <fieldset className="border-none p-0">
+>>>>>>> main
             <legend className="text-sm mb-2">Degree level</legend>
             <Select.Root
               value={data.degreeLevel ?? null}
@@ -167,7 +179,11 @@ export default function AcademicSection({
 
         {/* Program */}
         {data.degreeLevel && (
+<<<<<<< HEAD
           <fieldset className="border-none p-0 animate-appear">
+=======
+          <fieldset className="border-none p-0">
+>>>>>>> main
             <legend className="text-sm mb-2">Program</legend>
             <Select.Root
               value={data.programId != null ? String(data.programId) : null}
@@ -201,7 +217,11 @@ export default function AcademicSection({
               </Select.Portal>
             </Select.Root>
 
+<<<<<<< HEAD
             {/* {!suggestingProgram && !submittedProgram && (
+=======
+            {!suggestingProgram && !submittedProgram && (
+>>>>>>> main
               <button
                 type="button"
                 onClick={() => setSuggestingProgram(true)}
@@ -226,13 +246,21 @@ export default function AcademicSection({
               <p className="mt-2 text-sm">
                 Thanks! "{submittedProgram}" has been submitted for review.
               </p>
+<<<<<<< HEAD
             )} */}
+=======
+            )}
+>>>>>>> main
           </fieldset>
         )}
 
         {/* Year */}
         {data.programId && (
+<<<<<<< HEAD
           <fieldset className="border-none p-0 animate-appear">
+=======
+          <fieldset className="border-none p-0">
+>>>>>>> main
             <legend className="text-sm mb-2">Year of study</legend>
             <Select.Root value={data.year ?? null} onValueChange={handleYear}>
               <Select.Trigger className={selectClass}>
@@ -264,7 +292,11 @@ export default function AcademicSection({
 
         {/* Current Courses */}
         {data.programId && (
+<<<<<<< HEAD
           <fieldset className="border-none p-0 mb-4 animate-appear">
+=======
+          <fieldset className="border-none p-0 mb-4">
+>>>>>>> main
             <legend className="text-sm mb-2">Current courses</legend>
             <EntitySearch
               items={courseItems}
