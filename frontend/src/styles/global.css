@@ -1,21 +1,49 @@
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+@theme {
+  /* Typography */
+  /* Font */
+  --font-sans: "Geist Mono", system-ui, -apple-system, sans-serif;
+  /* Size 
+   * H0 text-4xl font-extrabold
+   * H1 text-3xl font-bold
+   * H2 text-2xl font-semibold
+   * H3 text-xl font-medium
+   * H4 text-lg font-medium
+  */
+  /* Colors */
+  /* TODO: Create a color palette */
+  /* Theme
+   * - Primary 60%: Large backgrounds, main headers, primary navigation bars, and key branding assets
+   * - Secondary 30%: Secondary buttons, subheadings, supporting text, charts, testimonials, and active/inactive icons
+   * - Accent 10%: Primary Calls-to-Action (CTAs), Floating Action Buttons (FABs), highlighted links, notifications, and important badges
+  */
+  --color-primary: white;
+  --color-secondary: grey;
+  --color-accent: black;
+  /* Surface */
+  --color-bg-main: white;
+  --color-bg-surface: black;
+  /* Text */
+  --color-text-main: black;
+  --color-text-muted: grey;
 }
 
-.root {
-    isolation: isolate;
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 }
 
 body {
-  font-family: system-ui, -apple-system, sans-serif;
-  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   position: relative;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
-img, video {
-  max-width: 100%;
-  display: block;
+.root {
+  isolation: isolate;
 }
