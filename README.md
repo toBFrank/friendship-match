@@ -1,6 +1,6 @@
-# My Flock
+# Flocker
 
-Meeting people in university is harder than it should be. My Flock is a study-buddy and friendship app that matches students across campus based on personality, shared interests, classes, and more!
+Meeting people in university is harder than it should be. Flocker is a study-buddy and friendship app that matches students across campus based on personality, shared interests, classes, and more!
 
 ---
 

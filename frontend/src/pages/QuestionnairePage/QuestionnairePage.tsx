@@ -10,7 +10,7 @@ import type { AccountFormData } from "../../types/account";
 import { INITIAL_ACCOUNT_DATA } from "../../types/account";
 import { getDomains } from "../../api/accountService";
 
-const SECTIONS = ["interests", "personality", "academic", "account"] as const;
+const SECTIONS = ["academic", "interests", "personality", "account"] as const;
 type Section = (typeof SECTIONS)[number];
 
 const SECTION_LABELS: Record<Section, string> = {

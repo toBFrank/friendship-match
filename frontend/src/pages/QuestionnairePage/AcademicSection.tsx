@@ -1,37 +1,10 @@
-import { useState, useEffect } from "react";
-import { Select } from "@base-ui/react/select";
+import { useState } from "react";
 import {
-  getPrograms,
-  getAllCourses,
-  getUniversities,
-} from "../../api/academicService";
-import type {
-  AcademicFormData,
-  AcademicYear,
-  DegreeLevel,
-  Program,
-  Course,
-  University,
-} from "../../types/academic";
-import { UNDERGRADUATE_YEARS, GRADUATE_YEARS, DEGREE_LEVELS } from "../../types/academic";
-import EntitySearch, { type SearchItem } from "../../components/ui/EntitySearch";
-import SuggestForm from "../../components/ui/SuggestForm";
-
-// ── Helpers ───────────────────────────────────────────────────────────────────
-
-const selectClass = [
-  "flex h-9 w-full items-center justify-between border border-[var(--color-bg-inverted)] bg-white px-3 text-sm",
-  "focus-visible:outline-2 focus-visible:-outline-offset-1 focus-visible:outline-[var(--color-bg-inverted)]",
-].join(" ");
-
-const popupClass =
-  "border border-[var(--color-bg-inverted)] bg-white z-50 max-h-[min(16rem,52vh)] overflow-y-auto no-scrollbar";
-
-const itemClass = [
-  "flex items-center px-3 py-1.5 text-sm cursor-pointer select-none",
-  "data-highlighted:bg-[var(--color-bg-inverted)] data-highlighted:text-white",
-].join(" ");
-
+  FACULTY_GROUPS,
+  ACADEMIC_YEARS,
+  type AcademicFormData,
+  type CourseInput,
+} from "../../data/sample_academic";
 
 interface AcademicSectionProps {
   data: AcademicFormData;
@@ -42,252 +15,133 @@ export default function AcademicSection({
   data,
   onChange,
 }: AcademicSectionProps) {
-  const [universities, setUniversities] = useState<University[]>([]);
-  const [programs, setPrograms] = useState<Program[]>([]);
-  const [allCourses, setAllCourses] = useState<Course[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [suggestingProgram, setSuggestingProgram] = useState(false);
-  const [submittedProgram, setSubmittedProgram] = useState<string | null>(null);
+  // Local state for the course currently being typed in
+  const [subjectInput, setSubjectInput] = useState("");
+  const [numberInput, setNumberInput] = useState("");
 
-  useEffect(() => {
-    Promise.all([getUniversities(), getPrograms(), getAllCourses()])
-      .then(([universities, programs, courses]) => {
-        setUniversities(universities);
-        setPrograms(programs);
-        setAllCourses(courses);
-      })
-      .catch(() => setError("Failed to load data. Please refresh."))
-      .finally(() => setLoading(false));
-  }, []);
+  const handleAddCourse = () => {
+    if (!subjectInput.trim() || !numberInput.trim()) return;
 
-  function handleDegreeLevel(value: string | null) {
-    onChange({
-      ...data,
-      degreeLevel: value as DegreeLevel | null,
-      programId: null,
-      year: null,
-      courseIds: [],
-    });
-    setSuggestingProgram(false);
-    setSubmittedProgram(null);
-  }
+    const newCourse: CourseInput = {
+      subject: subjectInput.toUpperCase().trim(),
+      number: numberInput.trim(),
+    };
 
-  function handleProgram(value: string | null) {
-    onChange({ ...data, programId: value ? Number(value) : null });
-  }
+    // Make sure courses array is initialized, then add the new course
+    const currentCourses = data.courses || [];
+    onChange({ ...data, courses: [...currentCourses, newCourse] });
 
-  function handleYear(value: string | null) {
-    onChange({ ...data, year: value as AcademicYear | null });
-  }
+    // Reset inputs
+    setSubjectInput("");
+    setNumberInput("");
+  };
 
-  // University — single select
-  const universityItems: SearchItem[] = universities.map((u) => ({
-    id: u.id,
-    primary: u.name,
-    secondary: u.country,
-  }));
-
-  // Course — multi select
-  const courseItems: SearchItem[] = allCourses.map((c) => ({
-    id: c.id,
-    primary: c.code,
-    secondary: c.name,
-  }));
-
-  const availablePrograms = data.degreeLevel
-    ? programs.filter((p) => p.degreeLevel === data.degreeLevel)
-    : [];
-
-  const selectedProgram = programs.find((p) => p.id === data.programId);
-  const yearOptions =
-    data.degreeLevel === "Graduate" ? GRADUATE_YEARS : UNDERGRADUATE_YEARS;
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p role="alert">{error}</p>;
+  const handleRemoveCourse = (indexToRemove: number) => {
+    const updatedCourses = (data.courses || []).filter(
+      (_, i) => i !== indexToRemove,
+    );
+    onChange({ ...data, courses: updatedCourses });
+  };
 
   return (
-    <section aria-labelledby="academic-heading" className="animate-appear">
-      <h2 id="academic-heading" className="text-2xl font-semibold">
-        What is your academic background?
-      </h2>
-      <p>Tell us about your studies.</p>
-
-      <div className="mt-6 flex flex-col gap-6">
-        {/* University */}
-        <fieldset className="border-none p-0 animate-appear">
-          <legend className="text-sm mb-2">University</legend>
-          <EntitySearch
-            items={universityItems}
-            selectedIds={data.universityId != null ? [data.universityId] : []}
-            placeholder="Search for your university..."
-            suggestType="university"
-            suggestPlaceholder="e.g. University of Alberta"
-            single
-            onAdd={(id) => onChange({ ...data, universityId: id })}
-            onRemove={() => onChange({ ...data, universityId: null })}
-            onSuggest={(value) => console.log("University suggestion:", value)}
-          />
-        </fieldset>
-
-        {/* Degree Level */}
-        {data.universityId && (
-          <fieldset className="border-none p-0 animate-appear">
-            <legend className="text-sm mb-2">Degree level</legend>
-            <Select.Root
-              value={data.degreeLevel ?? null}
-              onValueChange={handleDegreeLevel}
-            >
-              <Select.Trigger className={selectClass}>
-                <Select.Value placeholder="Select degree level">
-                  {data.degreeLevel ?? "Select degree level"}
-                </Select.Value>
-              </Select.Trigger>
-              <Select.Portal>
-                <Select.Positioner
-                  className="w-(--anchor-width)"
-                  alignItemWithTrigger={false}
-                >
-                  <Select.Popup className={popupClass}>
-                    {DEGREE_LEVELS.map((level) => (
-                      <Select.Item
-                        key={level}
-                        value={level}
-                        className={itemClass}
-                      >
-                        <Select.ItemText>{level}</Select.ItemText>
-                      </Select.Item>
-                    ))}
-                  </Select.Popup>
-                </Select.Positioner>
-              </Select.Portal>
-            </Select.Root>
-          </fieldset>
-        )}
-
-        {/* Program */}
-        {data.degreeLevel && (
-          <fieldset className="border-none p-0 animate-appear">
-            <legend className="text-sm mb-2">Program</legend>
-            <Select.Root
-              value={data.programId != null ? String(data.programId) : null}
-              onValueChange={handleProgram}
-            >
-              <Select.Trigger className={selectClass}>
-                <Select.Value placeholder="Select your program">
-                  {selectedProgram?.name ?? "Select your program"}
-                </Select.Value>
-              </Select.Trigger>
-              <Select.Portal>
-                <Select.Positioner
-                  className="w-(--anchor-width)"
-                  alignItemWithTrigger={false}
-                >
-                  <Select.Popup className={popupClass}>
-                    {availablePrograms.map((program) => (
-                      <Select.Item
-                        key={program.id}
-                        value={String(program.id)}
-                        className={itemClass}
-                      >
-                        <Select.ItemText>
-                          {program.name}
-                          <span className="ml-2">— {program.faculty}</span>
-                        </Select.ItemText>
-                      </Select.Item>
-                    ))}
-                  </Select.Popup>
-                </Select.Positioner>
-              </Select.Portal>
-            </Select.Root>
-
-            {/* {!suggestingProgram && !submittedProgram && (
-              <button
-                type="button"
-                onClick={() => setSuggestingProgram(true)}
-                className="mt-2 text-sm underline hover:font-medium"
-              >
-                Can't find your program? Suggest it.
-              </button>
-            )}
-            {suggestingProgram && (
-              <SuggestForm
-                type="program"
-                placeholder="e.g. Cognitive Science"
-                onSubmit={(value) => {
-                  console.log("Program suggestion:", value);
-                  setSubmittedProgram(value);
-                  setSuggestingProgram(false);
-                }}
-                onCancel={() => setSuggestingProgram(false)}
-              />
-            )}
-            {submittedProgram && (
-              <p className="mt-2 text-sm">
-                Thanks! "{submittedProgram}" has been submitted for review.
-              </p>
-            )} */}
-          </fieldset>
-        )}
-
-        {/* Year */}
-        {data.programId && (
-          <fieldset className="border-none p-0 animate-appear">
-            <legend className="text-sm mb-2">Year of study</legend>
-            <Select.Root value={data.year ?? null} onValueChange={handleYear}>
-              <Select.Trigger className={selectClass}>
-                <Select.Value placeholder="Select your year">
-                  {data.year ?? "Select your year"}
-                </Select.Value>
-              </Select.Trigger>
-              <Select.Portal>
-                <Select.Positioner
-                  className="w-(--anchor-width)"
-                  alignItemWithTrigger={false}
-                >
-                  <Select.Popup className={popupClass}>
-                    {yearOptions.map((year) => (
-                      <Select.Item
-                        key={year}
-                        value={year}
-                        className={itemClass}
-                      >
-                        <Select.ItemText>{year}</Select.ItemText>
-                      </Select.Item>
-                    ))}
-                  </Select.Popup>
-                </Select.Positioner>
-              </Select.Portal>
-            </Select.Root>
-          </fieldset>
-        )}
-
-        {/* Current Courses */}
-        {data.programId && (
-          <fieldset className="border-none p-0 mb-4 animate-appear">
-            <legend className="text-sm mb-2">Current courses</legend>
-            <EntitySearch
-              items={courseItems}
-              selectedIds={data.courseIds}
-              placeholder="Search by course code or name..."
-              suggestType="course"
-              suggestPlaceholder="e.g. LING 101 — Introduction to Linguistics"
-              onAdd={(id) => {
-                if (!data.courseIds.includes(id)) {
-                  onChange({ ...data, courseIds: [...data.courseIds, id] });
-                }
-              }}
-              onRemove={(id) =>
-                onChange({
-                  ...data,
-                  courseIds: data.courseIds.filter((c) => c !== id),
-                })
-              }
-              onSuggest={(value) => console.log("Course suggestion:", value)}
-            />
-          </fieldset>
-        )}
+    <section aria-labelledby="academic-heading" className="academic-section">
+      <div>
+        <h2 id="academic-heading" className="text-2xl font-semibold">
+          What is your academic background?
+        </h2>
+        <p>Tell us about your studies to help find your matches.</p>
       </div>
+
+      {/* Year */}
+      <fieldset className="form-group">
+        <legend className="form-label">Year of Study</legend>
+        <select
+          className="form-select"
+          value={data.year || ""}
+          onChange={(e) => onChange({ ...data, year: e.target.value })}
+        >
+          {ACADEMIC_YEARS.map((year) => (
+            <option key={year} value={year}>
+              {year}
+            </option>
+          ))}
+        </select>
+      </fieldset>
+
+      {/* Faculty / College */}
+      <fieldset className="form-group">
+        <legend className="form-label text-sm">Faculty or College</legend>
+        <select
+          className="form-select"
+          value={data.faculty || ""}
+          onChange={(e) => onChange({ ...data, faculty: e.target.value })}
+        >
+          {FACULTY_GROUPS.map((group) => (
+            <optgroup key={group.group} label={group.group}>
+              {group.options.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </optgroup>
+          ))}
+        </select>
+      </fieldset>
+
+      {/* Current Courses */}
+      <fieldset className="form-group">
+        <legend className="form-label">Current Courses</legend>
+        <div className="course-input-row">
+          <input
+            type="text"
+            name="subject"
+            className="form-input"
+            placeholder="PSYCH"
+            value={subjectInput}
+            onChange={(e) => setSubjectInput(e.target.value)}
+            onKeyDown={(e) =>
+              e.key === "Enter" && (e.preventDefault(), handleAddCourse())
+            }
+          />
+          <input
+            type="text"
+            className="form-input"
+            placeholder="104"
+            value={numberInput}
+            onChange={(e) => setNumberInput(e.target.value)}
+            onKeyDown={(e) =>
+              e.key === "Enter" && (e.preventDefault(), handleAddCourse())
+            }
+          />
+          <button type="button" className="btn-add" onClick={handleAddCourse}>
+            Add
+          </button>
+        </div>
+
+        {/* List of Added Courses */}
+        {data.courses && data.courses.length > 0 && (
+          <ul className="course-list" aria-label="Added courses">
+            {data.courses.map((course, index) => (
+              <li
+                className="course-item"
+                key={`${course.subject}-${course.number}-${index}`}
+              >
+                <span>
+                  {course.subject} {course.number}
+                </span>
+                <button
+                  type="button"
+                  className="btn-remove"
+                  onClick={() => handleRemoveCourse(index)}
+                  aria-label={`Remove ${course.subject} ${course.number}`}
+                >
+                  Remove
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
+      </fieldset>
     </section>
   );
 }
