@@ -25,3 +25,9 @@ Database:
 
 Auth:
 - TBD (Rails or Supabase Auth)
+
+---
+
+## Admin Scripts
+
+- **Email match results** (`scripts/send-match-emails.mjs`): emails matched pairs their result through Resend. See [scripts/README.md](scripts/README.md) for setup and the required `RESEND_API_KEY` / `MATCH_EMAIL_FROM` variables.
