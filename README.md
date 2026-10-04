@@ -22,6 +22,7 @@ Backend:
 
 Database:
 - PostgreSQL (Supabase)
+  - Schema migrations live in `supabase/migrations/`, seed data in `supabase/seed.sql` (applied by `supabase db reset`, or run both in the Supabase SQL editor in that order)
 
 Auth:
 - TBD (Rails or Supabase Auth)
