@@ -6,9 +6,10 @@ import type { PersonalityAnswer } from "../../types/personality";
 import AcademicSection from "./AcademicSection";
 import type { AcademicFormData } from "../../types/academic";
 import AccountSection, { validateAccount } from "./AccountSection";
-import type { AccountFormData } from "../../types/account";
+import type { AccountFormData, AccountFormErrors } from "../../types/account";
 import { INITIAL_ACCOUNT_DATA } from "../../types/account";
 import { getDomains } from "../../api/accountService";
+import SubmittedSection from "./SubmittedSection";
 
 const SECTIONS = ["interests", "personality", "academic", "account"] as const;
 type Section = (typeof SECTIONS)[number];
@@ -44,16 +45,19 @@ export default function QuestionnairePage() {
   const [validDomains, setValidDomains] = useState<string[]>([]);
   const [accountData, setAccountData] =
     useState<AccountFormData>(INITIAL_ACCOUNT_DATA);
-  const [accountErrors, setAccountErrors] = useState({});
+  const [accountErrors, setAccountErrors] = useState<AccountFormErrors>({});
+  const [submittedEmail, setSubmittedEmail] = useState<string | null>(null);
 
-  const progressValue = Math.round((currentSection / SECTIONS.length) * 100);
+  const progressValue = submittedEmail
+    ? 100
+    : Math.round((currentSection / SECTIONS.length) * 100);
   const isFirst = currentSection === 0;
   const isLast = currentSection === SECTIONS.length - 1;
   const canAdvance = isSectionValid(SECTIONS[currentSection]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [currentSection]);
+  }, [currentSection, submittedEmail]);
 
     useEffect(() => {
       const fetchDomains = async () => {
@@ -94,12 +98,32 @@ export default function QuestionnairePage() {
 
   function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
-    const errors = validateAccount(accountData);
-    if (Object.keys(errors).length > 0) {
-      setAccountErrors(errors);
-      return;
+    const errors = validateAccount(accountData, validDomains);
+    setAccountErrors(errors);
+    if (Object.keys(errors).length > 0) return;
+
+    // TODO (US-1.013): POST questionnaire responses to Rails API, with email as identifier
+    const email = accountData.email.trim();
+    console.log("Questionnaire submission:", {
+      interests,
+      personalityAnswers,
+      academicData,
+      account: { ...accountData, email },
+    });
+    setSubmittedEmail(email);
+  }
+
+  function handleAccountChange(next: AccountFormData) {
+    // Clear the error on any field the user has edited
+    const changed = (Object.keys(next) as (keyof AccountFormData)[]).filter(
+      (field) => next[field] !== accountData[field],
+    );
+    if (changed.some((field) => accountErrors[field])) {
+      const remaining = { ...accountErrors };
+      changed.forEach((field) => delete remaining[field]);
+      setAccountErrors(remaining);
     }
-    // TODO: POST to Rails API
+    setAccountData(next);
   }
 
   function renderSection() {
@@ -123,7 +147,7 @@ export default function QuestionnairePage() {
           <AccountSection
             data={accountData}
             errors={accountErrors}
-            onChange={setAccountData}
+            onChange={handleAccountChange}
           />
         );
     }
@@ -148,35 +172,39 @@ export default function QuestionnairePage() {
       </section>
 
       <section aria-labelledby="section-questionnaire" className="mt-8">
-        <form onSubmit={handleSubmit}>
-          {renderSection()}
+        {submittedEmail ? (
+          <SubmittedSection email={submittedEmail} />
+        ) : (
+          <form onSubmit={handleSubmit}>
+            {renderSection()}
 
-          <div className="mt-8 flex justify-between">
-            <button
-              type="button"
-              onClick={handlePrev}
-              disabled={isFirst}
-              className="disabled:opacity-0"
-            >
-              ← Prev: {!isFirst && SECTION_LABELS[SECTIONS[currentSection - 1]]}
-            </button>
+            <div className="mt-8 flex justify-between">
+              <button
+                type="button"
+                onClick={handlePrev}
+                disabled={isFirst}
+                className="disabled:opacity-0"
+              >
+                ← Prev: {!isFirst && SECTION_LABELS[SECTIONS[currentSection - 1]]}
+              </button>
 
-            {!isLast ? (
-              <div className="flex flex-col items-end gap-1">
-                {!canAdvance && (
-                  <p className="text-sm text-(--color-secondary)">
-                    {SECTION_HINTS[SECTIONS[currentSection]]}
-                  </p>
-                )}
-                <button type="button" className="disabled:opacity-50" onClick={handleNext} disabled={!canAdvance}>
-                  Next: {SECTION_LABELS[SECTIONS[currentSection + 1]]} →
-                </button>
-              </div>
-            ) : (
-              <button type="submit">Submit</button>
-            )}
-          </div>
-        </form>
+              {!isLast ? (
+                <div className="flex flex-col items-end gap-1">
+                  {!canAdvance && (
+                    <p className="text-sm text-(--color-secondary)">
+                      {SECTION_HINTS[SECTIONS[currentSection]]}
+                    </p>
+                  )}
+                  <button type="button" className="disabled:opacity-50" onClick={handleNext} disabled={!canAdvance}>
+                    Next: {SECTION_LABELS[SECTIONS[currentSection + 1]]} →
+                  </button>
+                </div>
+              ) : (
+                <button type="submit">Submit</button>
+              )}
+            </div>
+          </form>
+        )}
       </section>
     </main>
   );

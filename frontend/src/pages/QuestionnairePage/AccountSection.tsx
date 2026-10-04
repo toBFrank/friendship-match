@@ -3,7 +3,10 @@ import Field from "../../components/ui/Field";
 
 // ── Validation ────────────────────────────────────────────────────────────────
 
-export function validateAccount(data: AccountFormData): AccountFormErrors {
+export function validateAccount(
+  data: AccountFormData,
+  validDomains: string[],
+): AccountFormErrors {
   const errors: AccountFormErrors = {};
 
   if (!data.firstName.trim()) errors.firstName = "First name is required.";
@@ -14,7 +17,7 @@ export function validateAccount(data: AccountFormData): AccountFormErrors {
     errors.email = "Email is required.";
   } else if (!data.email.includes("@") || !data.email.includes(".")) {
     errors.email = "Enter a valid email address.";
-  } else if (!!domain && !VALID_DOMAINS.includes(domain)) {
+  } else if (validDomains.length > 0 && !!domain && !validDomains.includes(domain)) {
     errors.email = "Please use your school email address.";
   }
 
@@ -43,9 +46,12 @@ export default function AccountSection({
   return (
     <section aria-labelledby="account-heading" className="animate-appear">
       <h2 id="account-heading" className="text-2xl font-semibold">
-        Who are you?
+        Where should we send your matches?
       </h2>
-      <p>Some final details before we can match you.</p>
+      <p>
+        Last step! Enter your school email and we'll let you know when your
+        matches are ready.
+      </p>
 
       <div className="mt-6 flex flex-col gap-4">
         <div className="flex gap-4">
