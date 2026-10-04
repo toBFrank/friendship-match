@@ -1,0 +1,2 @@
+# Match run exports contain participant names/emails — never commit them.
+*.csv
