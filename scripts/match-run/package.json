@@ -1,0 +1,14 @@
+{
+  "name": "match-run",
+  "private": true,
+  "version": "0.0.0",
+  "description": "US-3.011: admin script to manually trigger a match run and export pairs to CSV",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "match": "node run-match.js",
+    "test": "node --test"
+  }
+}
